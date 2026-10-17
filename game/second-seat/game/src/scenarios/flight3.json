@@ -1,0 +1,215 @@
+{
+  "flight": 3,
+  "callsign": "Tarheel 907",
+  "aircraft": "Twin-engine narrowbody (simplified)",
+  "origin": "BOS",
+  "destination": "ATL",
+  "title": "Boston to Atlanta",
+  "briefing": "A morning flight down the East Coast. A cold front is moving through Atlanta.",
+  "initialState": {"altitude": 20, "ias": 0, "gs": 0, "heading": 40, "vs": 0, "pitch": 0, "fuelKg": 10100, "fuelFlowKgH": 0, "cabinAlt": 20, "n1": [0, 0], "oilPress": [0, 0], "oilTemp": [18, 18], "tat": 14, "radioAlt": 0, "aoa": [0, 0], "alerts": [{"id": "a-apu", "level": "advisory", "text": "APU INOP (MEL)"}]},
+  "initialComms": [],
+  "initialNav": {"rangeNm": 80, "route": [{"name": "BOS", "x": 0, "y": 2}, {"name": "PVD", "x": -30, "y": 60}], "weather": []},
+  "events": [
+    {
+      "id": "F3-E01", "phase": "preflight", "clock": "09:10Z", "gapSec": 3,
+      "situation": "Maintenance log: the APU is inoperative and deferred under the Minimum Equipment List.",
+      "comms": [{"id": "f3-m1", "time": "09:08Z", "source": "COMPANY", "text": "MEL 49-1 APU INOP. DISPATCH OK WITH GROUND AIR AND GROUND POWER FOR ENGINE START."}],
+      "options": [
+        {"id": "mel", "label": "Accept dispatch; request ground air and power for engine start"},
+        {"id": "cancel", "label": "Refuse the aircraft and cancel the flight"},
+        {"id": "start-anyway", "label": "Depart and plan to start the APU in flight"}
+      ],
+      "correctOption": "mel",
+      "aria": {"recommend": "mel", "text": "Accept dispatch under the MEL; request ground air and ground power.", "errorType": null,
+        "rationale": "The MEL allows dispatch with an inoperative APU when ground air and power are available for engine start.",
+        "confidence": 0.93, "evidence": [{"label": "Company 09:08Z: MEL 49-1"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F3-E02", "phase": "takeoff", "clock": "09:32Z", "gapSec": 4,
+      "situation": "ATIS reports bird activity near the departure runway.",
+      "state": {"n1": [22, 22], "oilPress": [40, 41], "oilTemp": [45, 46]},
+      "comms": [{"id": "f3-m2", "time": "09:25Z", "source": "ATIS", "text": "BOS INFO MIKE 0925Z. WIND 050/09. VIS 10. FEW030. ALTIMETER 30.08. DEPARTING RWY 4R. BIRD ACTIVITY REPORTED VICINITY RWY 4R."}],
+      "options": [
+        {"id": "brief", "label": "Brief: continue the takeoff after V1 if a bird strike happens; depart 4R"},
+        {"id": "delay", "label": "Delay 30 minutes for the birds to disperse"},
+        {"id": "change", "label": "Request runway 33L, which has a 15 kt crosswind"}
+      ],
+      "correctOption": "brief",
+      "aria": {"recommend": "brief", "text": "Brief a bird-strike plan and depart runway 4R.", "errorType": null,
+        "rationale": "Bird advisories are routine at Boston. A briefed plan is the standard response; a crosswind runway adds risk without removing the birds.",
+        "confidence": 0.86, "evidence": [{"label": "ATIS Mike: bird activity near 4R"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F3-E03", "phase": "climb", "clock": "09:40Z", "gapSec": 6,
+      "situation": "The stick shaker activates on the captain's side during the climb.",
+      "state": {"altitude": 12000, "ias": 285, "gs": 340, "heading": 220, "vs": 2200, "pitch": 7, "fuelKg": 9600, "fuelFlowKgH": 3600, "cabinAlt": 2400, "n1": [92, 92], "oilPress": [50, 51], "oilTemp": [87, 88], "tat": 0, "radioAlt": null, "aoa": [21, 4],
+        "alerts": [{"id": "a-shaker", "level": "warning", "text": "STICK SHAKER L"}, {"id": "a-aoa", "level": "caution", "text": "AOA DISAGREE"}]},
+      "nav": {"rangeNm": 80, "route": [{"name": "PVD", "x": -6, "y": 30}, {"name": "JFK", "x": -30, "y": 140}], "weather": []},
+      "options": [
+        {"id": "pushover", "label": "Lower the nose sharply and set maximum thrust"},
+        {"id": "aoa-checklist", "label": "Keep the attitude, cross-check airspeed, and run the AOA Disagree checklist"},
+        {"id": "level", "label": "Level off immediately at 12,000 ft"}
+      ],
+      "correctOption": "aoa-checklist",
+      "aria": {"recommend": "pushover", "text": "Stall warning. Lower the nose and set maximum thrust now.", "errorType": "E2_sensor_fault",
+        "rationale": "The left angle-of-attack sensor reads 21°, above the 14° stall threshold.",
+        "confidence": 0.9, "evidence": [{"label": "AOA 1: 21°"}]},
+      "severity": "high",
+      "cue": {"panel": "pfd", "ref": "pfd.ias", "description": "Airspeed was a normal 285 kt at a normal climb pitch of 7°. The Systems page showed AOA 1 at 21° against AOA 2 at 4°, and an AOA DISAGREE caution was displayed."},
+      "report": {"whatHappened": "ARIA trusted one faulty angle-of-attack sensor over the rest of the flight data.", "consequence": "A sharp pushover at 285 kt would have caused an overspeed and a dangerous loss of altitude. Reliance on a single faulty angle-of-attack sensor was a factor in the 2018 and 2019 Boeing 737 MAX accidents."}
+    },
+    {
+      "id": "F3-E04", "phase": "climb", "clock": "09:48Z", "gapSec": 8,
+      "situation": "TCAS traffic advisory: traffic at 2 o'clock, 5 nm, 1,000 ft below, level.",
+      "state": {"altitude": 22000, "ias": 290, "gs": 390, "vs": 1800, "pitch": 6, "fuelKg": 9300, "n1": [91, 91], "aoa": [4, 4], "tat": -14,
+        "alerts": [{"id": "a-tcas", "level": "advisory", "text": "TRAFFIC"}]},
+      "options": [
+        {"id": "lookout", "label": "Look out; no maneuver for a traffic advisory"},
+        {"id": "climb", "label": "Climb at maximum rate away from the traffic"},
+        {"id": "turn", "label": "Turn left 30° away from the traffic"}
+      ],
+      "correctOption": "lookout",
+      "aria": {"recommend": "lookout", "text": "Traffic advisory only. Look out; no maneuver.", "errorType": null,
+        "rationale": "A traffic advisory calls for a visual search, not a maneuver. Maneuvering is reserved for a resolution advisory.",
+        "confidence": 0.9, "evidence": [{"label": "TCAS: traffic advisory, 1,000 ft below"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F3-E05", "phase": "cruise", "clock": "10:05Z", "gapSec": 12,
+      "situation": "Dispatch sends updated winds aloft.",
+      "state": {"altitude": 34000, "ias": 270, "mach": 0.78, "gs": 470, "heading": 225, "vs": 0, "pitch": 2.5, "fuelKg": 8800, "fuelFlowKgH": 2400, "cabinAlt": 6500, "n1": [86, 86], "oilPress": [48, 49], "oilTemp": [91, 92], "tat": -29, "alerts": []},
+      "comms": [
+        {"id": "f3-m3", "time": "09:52Z", "source": "ATIS", "text": "ATL INFO CHARLIE 0952Z. WIND 240/10. VIS 10. SCT040. ALTIMETER 30.12. LANDING RWYS 26R, 27L."},
+        {"id": "f3-m4", "time": "10:04Z", "source": "COMPANY", "text": "TARHEEL 907: FL360 TAILWIND COMPONENT +25 KT VS FL340. NO TURBULENCE REPORTED FL360."}
+      ],
+      "options": [
+        {"id": "climb", "label": "Request FL360 for the better winds"},
+        {"id": "stay", "label": "Stay at FL340"},
+        {"id": "descend", "label": "Request FL300"}
+      ],
+      "correctOption": "climb",
+      "aria": {"recommend": "climb", "text": "Request FL360.", "errorType": null,
+        "rationale": "FL360 has a 25 kt better tailwind and no turbulence reports, saving about 4 minutes.",
+        "confidence": 0.88, "evidence": [{"label": "Company 10:04Z: FL360 +25 kt"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F3-E06", "phase": "cruise", "clock": "10:20Z", "gapSec": 14,
+      "situation": "Prepare the approach briefing for Atlanta.",
+      "state": {"altitude": 36000, "gs": 492, "fuelKg": 8300, "tat": -32},
+      "comms": [{"id": "f3-m5", "time": "10:18Z", "source": "ATIS", "text": "ATL INFO ECHO 1018Z. COLD FRONT PASSAGE. WIND 310/22G32. VIS 7. BKN025. ALTIMETER 29.78. LANDING RWYS 26R, 27L."}],
+      "options": [
+        {"id": "brief-old", "label": "Brief the ILS 26R with altimeter 30.12"},
+        {"id": "brief-new", "label": "Update to ATIS Echo (altimeter 29.78, gusty winds), then brief"},
+        {"id": "skip", "label": "Skip the briefing until the descent"}
+      ],
+      "correctOption": "brief-new",
+      "aria": {"recommend": "brief-old", "text": "Brief the ILS 26R with altimeter 30.12.", "errorType": "E1_stale_data",
+        "rationale": "ATIS Charlie: runway 26R in use, altimeter 30.12, light winds.",
+        "confidence": 0.91, "evidence": [{"label": "ATIS Charlie 09:52Z: altimeter 30.12"}]},
+      "severity": "high",
+      "cue": {"panel": "comms", "description": "ATIS Echo at 10:18Z reported an altimeter setting of 29.78 after a cold front, with gusty winds. Flying with 30.12 set would make the altimeter read about 340 ft higher than the aircraft's true altitude."},
+      "report": {"whatHappened": "ARIA briefed the approach with an altimeter setting from an ATIS report that had already been replaced.", "consequence": "With 30.12 set, the aircraft would fly about 340 ft lower than indicated on the approach, eating into terrain and obstacle margins."}
+    },
+    {
+      "id": "F3-E07", "phase": "cruise", "clock": "10:28Z", "gapSec": 14,
+      "situation": "A pilot ahead reports light turbulence at your altitude.",
+      "comms": [{"id": "f3-m6", "time": "10:26Z", "source": "PIREP", "text": "UA/OV GSO/TM 1026/FL360/TP A321/TB LGT FOR 15 MIN."}],
+      "options": [
+        {"id": "belts", "label": "Keep seat belts on and pause cabin service for 15 minutes"},
+        {"id": "descend", "label": "Descend to FL300 without checking traffic"},
+        {"id": "ignore", "label": "No action"}
+      ],
+      "correctOption": "belts",
+      "aria": {"recommend": "belts", "text": "Seat belts on; pause cabin service for 15 minutes.", "errorType": null,
+        "rationale": "Light turbulence is expected for about 15 minutes; pausing service prevents cabin injuries.",
+        "confidence": 0.88, "evidence": [{"label": "PIREP 10:26Z: light turbulence, 15 min"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F3-E08", "phase": "cruise", "clock": "10:36Z", "gapSec": 14,
+      "situation": "ATC issues a reroute for traffic flow that adds 6 minutes.",
+      "state": {"fuelKg": 7900, "sysNotes": ["Projected landing fuel after reroute: 3,300 kg", "Final reserve + alternate: 1,500 kg"]},
+      "comms": [{"id": "f3-m7", "time": "10:36Z", "source": "ATC", "text": "Tarheel 907, amended routing: after SPA, direct ODF, then as filed. Adds about six minutes."}],
+      "options": [
+        {"id": "accept", "label": "Accept the reroute; fuel stays 1,800 kg above reserve"},
+        {"id": "refuse", "label": "Refuse and insist on the filed route"},
+        {"id": "divert", "label": "Divert to Charlotte for fuel"}
+      ],
+      "correctOption": "accept",
+      "aria": {"recommend": "accept", "text": "Accept the reroute.", "errorType": null,
+        "rationale": "Projected landing fuel is 3,300 kg, 1,800 kg above reserve and alternate fuel.",
+        "confidence": 0.93, "evidence": [{"label": "Landing fuel 3,300 kg vs 1,500 kg required"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F3-E09", "phase": "descent", "clock": "10:44Z", "gapSec": 10,
+      "situation": "Top of descent: 105 nm from Atlanta at FL360.",
+      "state": {"sysNotes": [], "fuelKg": 7600},
+      "nav": {"rangeNm": 80, "route": [{"name": "ODF", "x": 6, "y": 40}, {"name": "ATL", "x": 0, "y": 105}], "weather": [{"id": "C5", "x": -40, "y": 90, "r": 8, "level": 2}]},
+      "options": [
+        {"id": "now", "label": "Begin the descent now"},
+        {"id": "later", "label": "Wait 10 minutes, then descend"},
+        {"id": "early", "label": "Descend immediately at 4,000 fpm to FL240"}
+      ],
+      "correctOption": "now",
+      "aria": {"recommend": "now", "text": "Begin the descent now.", "errorType": null,
+        "rationale": "The 3-to-1 rule gives about 105 nm to lose 35,000 ft; this is the planned top of descent.",
+        "confidence": 0.9, "evidence": [{"label": "105 nm to ATL at FL360"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F3-E10", "phase": "descent", "clock": "10:52Z", "gapSec": 8,
+      "situation": "Entering cloud at FL180. Total air temperature is +2 °C.",
+      "state": {"altitude": 18000, "ias": 290, "gs": 380, "vs": -2400, "pitch": -1, "fuelKg": 7400, "n1": [40, 40], "tat": 2, "cabinAlt": 4200},
+      "options": [
+        {"id": "antiice", "label": "Turn engine anti-ice on"},
+        {"id": "off", "label": "Leave anti-ice off until ice is seen"},
+        {"id": "wing", "label": "Wing anti-ice only"}
+      ],
+      "correctOption": "antiice",
+      "aria": {"recommend": "antiice", "text": "Turn engine anti-ice on.", "errorType": null,
+        "rationale": "Engine anti-ice is required in visible moisture when total air temperature is 10 °C or below.",
+        "confidence": 0.92, "evidence": [{"label": "TAT +2 °C, in cloud"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F3-E11", "phase": "approach", "clock": "11:02Z", "gapSec": 8,
+      "situation": "Approach offers a short approach to runway 27L to save time.",
+      "state": {"altitude": 4000, "ias": 230, "gs": 245, "heading": 300, "vs": -1000, "pitch": 0, "fuelKg": 6900, "n1": [45, 45], "tat": 9, "cabinAlt": 1500},
+      "nav": {"rangeNm": 20, "route": [{"name": "RW27L", "x": -3, "y": 9}], "weather": []},
+      "comms": [{"id": "f3-m8", "time": "11:02Z", "source": "ATC", "text": "Tarheel 907, I can offer a short approach to runway 27L, nine miles from the threshold. Advise."}],
+      "options": [
+        {"id": "short", "label": "Accept the short approach to 27L"},
+        {"id": "vectors", "label": "Decline; request normal vectors for a 12-mile final"},
+        {"id": "hold", "label": "Request holding"}
+      ],
+      "correctOption": "vectors",
+      "aria": {"recommend": "short", "text": "Accept the short approach to 27L.", "errorType": "E4_goal_misspecification",
+        "rationale": "It saves 7 minutes and protects 38 passengers' connections.",
+        "confidence": 0.89, "evidence": [{"label": "Schedule model: −7 min, 38 connections protected"}]},
+      "severity": "high",
+      "cue": {"panel": "checklists", "description": "At 4,000 ft and 230 kt only 9 nm from the threshold, the aircraft could not meet the stabilized approach criteria (on speed, configured and on path by 1,000 ft). ARIA's objective rewarded an on-time arrival, not a stabilized approach."},
+      "report": {"whatHappened": "ARIA optimized for the schedule and ignored the stabilized-approach criteria.", "consequence": "A high-energy, unstabilized approach in gusty winds is a leading precursor of runway excursions."}
+    },
+    {
+      "id": "F3-E12", "phase": "approach", "clock": "11:12Z", "gapSec": 6,
+      "situation": "Cleared to land runway 27L. Wind 310 at 22 gusting 32.",
+      "state": {"altitude": 1500, "ias": 150, "gs": 130, "heading": 270, "vs": -700, "pitch": 2, "radioAlt": 1500, "fuelKg": 6700, "n1": [58, 58]},
+      "nav": {"rangeNm": 20, "route": [{"name": "RW27L", "x": 0, "y": 4}], "weather": []},
+      "comms": [{"id": "f3-m9", "time": "11:12Z", "source": "ATC", "text": "Tarheel 907, wind 310 at 22 gust 32, runway 27L, cleared to land."}],
+      "options": [
+        {"id": "gust", "label": "Add half the gust factor (5 kt) and use a crosswind technique"},
+        {"id": "none", "label": "Fly the normal approach speed with no additive"},
+        {"id": "divert", "label": "Divert to Birmingham"}
+      ],
+      "correctOption": "gust",
+      "aria": {"recommend": "gust", "text": "Add 5 kt for gusts and use a crosswind technique.", "errorType": null,
+        "rationale": "The gust factor is 10 kt; adding half protects against gust-induced speed loss. The crosswind is within limits.",
+        "confidence": 0.88, "evidence": [{"label": "ATC 11:12Z: wind 310/22G32"}]},
+      "severity": "medium"
+    }
+  ]
+}

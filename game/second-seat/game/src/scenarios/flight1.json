@@ -1,0 +1,219 @@
+{
+  "flight": 1,
+  "callsign": "Tarheel 211",
+  "aircraft": "Twin-engine narrowbody (simplified)",
+  "origin": "RDU",
+  "destination": "ORD",
+  "title": "Raleigh-Durham to Chicago O'Hare",
+  "briefing": "An afternoon flight to Chicago. Weather is fair at departure; expect busy traffic at O'Hare.",
+  "initialState": {"altitude": 435, "ias": 0, "gs": 0, "heading": 230, "vs": 0, "pitch": 0, "fuelKg": 4200, "fuelFlowKgH": 0, "cabinAlt": 435, "n1": [21, 21], "oilPress": [40, 41], "oilTemp": [60, 61], "tat": 24, "radioAlt": 0, "aoa": [0, 0], "alerts": []},
+  "initialComms": [
+    {"id": "f1-m1", "time": "12:51Z", "source": "ATIS", "text": "RDU INFO BRAVO 1251Z. WIND 230/12. VIS 10. FEW050. TEMP 24. ALTIMETER 30.02. DEPARTING RWY 23R."}
+  ],
+  "initialNav": {"rangeNm": 80, "route": [{"name": "LIB", "x": 12, "y": 30}, {"name": "HVQ", "x": 20, "y": 110}], "weather": []},
+  "events": [
+    {
+      "id": "F1-E01", "phase": "preflight", "clock": "13:02Z", "gapSec": 3,
+      "situation": "Dispatch release received: trip fuel 6,900 kg, reserve 1,400 kg, alternate (MKE) 1,100 kg, taxi 200 kg.",
+      "options": [
+        {"id": "fuel-9800", "label": "Load 9,800 kg (plan plus 200 kg extra)"},
+        {"id": "fuel-8600", "label": "Load 8,600 kg (skip the alternate fuel)"},
+        {"id": "fuel-11500", "label": "Load 11,500 kg (carry extra fuel to save on price)"}
+      ],
+      "correctOption": "fuel-9800",
+      "aria": {"recommend": "fuel-9800", "text": "Load 9,800 kg.", "errorType": null,
+        "rationale": "Trip 6,900 + reserve 1,400 + alternate 1,100 + taxi 200 = 9,600 kg. The extra 200 kg covers expected vectors at O'Hare.",
+        "confidence": 0.93, "evidence": [{"label": "Dispatch release: trip fuel 6,900 kg"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F1-E02", "phase": "takeoff", "clock": "13:18Z", "gapSec": 4,
+      "situation": "Ready to taxi. Ground asks which departure runway you want.",
+      "state": {"fuelKg": 9800, "n1": [24, 24]},
+      "options": [
+        {"id": "rwy23r", "label": "Request runway 23R"},
+        {"id": "rwy5l", "label": "Request runway 5L"},
+        {"id": "rwy14", "label": "Request runway 14 (shorter, crosswind)"}
+      ],
+      "correctOption": "rwy23r",
+      "aria": {"recommend": "rwy23r", "text": "Request runway 23R.", "errorType": null,
+        "rationale": "ATIS Bravo wind 230/12 gives a 12 kt headwind on 23R. Runway 5L would mean a 12 kt tailwind, above the 10 kt limit.",
+        "confidence": 0.95, "evidence": [{"label": "ATIS Bravo 12:51Z: wind 230/12"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F1-E03", "phase": "climb", "clock": "13:31Z", "gapSec": 6,
+      "situation": "ATC clears you to flight level 340.",
+      "state": {"altitude": 14000, "ias": 290, "gs": 360, "heading": 300, "vs": 2400, "pitch": 8, "fuelKg": 9300, "fuelFlowKgH": 3600, "cabinAlt": 2600, "n1": [92, 92], "oilPress": [50, 51], "oilTemp": [88, 89], "tat": 2, "radioAlt": null, "aoa": [5, 5]},
+      "comms": [{"id": "f1-m2", "time": "13:31Z", "source": "ATC", "text": "Tarheel 211, climb and maintain flight level 340."}],
+      "options": [
+        {"id": "climb-normal", "label": "Climb at 290 kt / M0.78 with climb thrust"},
+        {"id": "climb-max", "label": "Expedite at the maximum climb rate"},
+        {"id": "level-240", "label": "Level off at FL240 and stay low"}
+      ],
+      "correctOption": "climb-normal",
+      "aria": {"recommend": "climb-normal", "text": "Climb at 290 kt, then M0.78, with climb thrust.", "errorType": null,
+        "rationale": "No speed or rate restriction was issued. The planned climb profile is the most fuel efficient.",
+        "confidence": 0.9, "evidence": [{"label": "ATC 13:31Z: climb FL340, no restriction"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F1-E04", "phase": "climb", "clock": "13:40Z", "gapSec": 8,
+      "situation": "A pilot report mentions light chop a little above you.",
+      "state": {"altitude": 29000, "ias": 285, "mach": 0.76, "gs": 420, "vs": 1500, "pitch": 5, "fuelKg": 8900, "fuelFlowKgH": 3000, "cabinAlt": 5200, "n1": [90, 90], "tat": -20, "aoa": [4, 4]},
+      "comms": [{"id": "f1-m3", "time": "13:36Z", "source": "PIREP", "text": "UA/OV GSO/TM 1336/FL310/TP B738/TB LGT CHOP FL300-320."}],
+      "options": [
+        {"id": "belts-continue", "label": "Turn on the seat belt sign and continue the climb"},
+        {"id": "request-lower", "label": "Stay at FL280 for the rest of the flight"},
+        {"id": "continue-nothing", "label": "Continue the climb with no change"}
+      ],
+      "correctOption": "belts-continue",
+      "aria": {"recommend": "belts-continue", "text": "Seat belt sign on; continue the climb.", "errorType": null,
+        "rationale": "Only light chop is reported between FL300 and FL320; passing through takes about a minute.",
+        "confidence": 0.88, "evidence": [{"label": "PIREP 13:36Z: light chop FL300–320"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F1-E05", "phase": "cruise", "clock": "13:55Z", "gapSec": 12,
+      "situation": "Weather radar shows a strong cell about 55 nm ahead, slightly left of your track.",
+      "state": {"altitude": 34000, "ias": 270, "mach": 0.78, "gs": 455, "heading": 310, "vs": 0, "pitch": 2.5, "fuelKg": 8500, "fuelFlowKgH": 2400, "cabinAlt": 6500, "n1": [86, 86], "oilPress": [48, 49], "oilTemp": [92, 93], "tat": -28, "aoa": [3, 3]},
+      "nav": {"rangeNm": 80, "route": [{"name": "HVQ", "x": 0, "y": 40}, {"name": "WEEVL", "x": 6, "y": 110}],
+        "weather": [{"id": "C1", "x": -9, "y": 55, "r": 10, "level": 3}, {"id": "C2", "x": -18, "y": 62, "r": 6, "level": 2}],
+        "proposed": [{"name": "", "x": 0, "y": 0}, {"name": "", "x": 14, "y": 42}, {"name": "WEEVL", "x": 6, "y": 110}]},
+      "options": [
+        {"id": "dev-right", "label": "Deviate 15° right, then direct WEEVL"},
+        {"id": "stay", "label": "Continue on the planned track"},
+        {"id": "dev-left", "label": "Deviate 15° left"}
+      ],
+      "correctOption": "dev-right",
+      "aria": {"recommend": "dev-right", "text": "Deviate 15° right, then direct WEEVL.", "errorType": null,
+        "rationale": "Cell C1 sits about 9 nm left of track. A right deviation keeps 20 nm clearance, the usual minimum for strong cells.",
+        "confidence": 0.91, "evidence": [{"label": "Weather radar: cell C1 left of track", "ref": "nav.C1"}]},
+      "severity": "high"
+    },
+    {
+      "id": "F1-E06", "phase": "cruise", "clock": "14:03Z", "gapSec": 14,
+      "situation": "Your company reports arrival delays at O'Hare.",
+      "state": {"heading": 315, "fuelKg": 8200},
+      "nav": {"rangeNm": 80, "route": [{"name": "WEEVL", "x": -4, "y": 50}, {"name": "FWA", "x": 4, "y": 120}], "weather": [{"id": "C1", "x": -30, "y": 5, "r": 10, "level": 3}]},
+      "comms": [{"id": "f1-m4", "time": "14:02Z", "source": "COMPANY", "text": "TARHEEL 211: ORD ARRIVAL DELAYS 20 MIN DUE TO VOLUME. CONSIDER SPEED REDUCTION."}],
+      "options": [
+        {"id": "slow", "label": "Reduce cruise speed to M0.74 to absorb the delay"},
+        {"id": "maintain", "label": "Keep M0.78 and hold at O'Hare"},
+        {"id": "hold-now", "label": "Request holding now over Indiana"}
+      ],
+      "correctOption": "slow",
+      "aria": {"recommend": "slow", "text": "Reduce to M0.74 to absorb the delay en route.", "errorType": null,
+        "rationale": "Absorbing 20 minutes en route at M0.74 burns about 250 kg less than holding at O'Hare.",
+        "confidence": 0.87, "evidence": [{"label": "Company 14:02Z: ORD delays 20 min"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F1-E07", "phase": "cruise", "clock": "14:10Z", "gapSec": 14,
+      "situation": "Fuel check at waypoint FWA. Planned fuel here was 7,450 kg.",
+      "state": {"mach": 0.74, "ias": 255, "gs": 430, "fuelKg": 7600, "fuelFlowKgH": 2200, "n1": [83, 83]},
+      "comms": [{"id": "f1-m5", "time": "14:00Z", "source": "METAR", "text": "KORD 141400Z 04008KT 10SM BKN045 22/12 A2998."}],
+      "options": [
+        {"id": "no-action", "label": "Fuel is on plan; no action"},
+        {"id": "divert", "label": "Divert to Cincinnati for fuel"},
+        {"id": "lower", "label": "Request FL300 to save fuel"}
+      ],
+      "correctOption": "no-action",
+      "aria": {"recommend": "no-action", "text": "Fuel is on plan. No action needed.", "errorType": null,
+        "rationale": "Actual fuel is 150 kg above the plan for this waypoint.",
+        "confidence": 0.95, "evidence": [{"label": "Fuel 7,600 kg vs plan 7,450 kg"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F1-E08", "phase": "cruise", "clock": "14:16Z", "gapSec": 15,
+      "situation": "Engine 2 oil temperature reads 104 °C, warmer than engine 1.",
+      "state": {"oilTemp": [92, 104], "fuelKg": 7380, "sysNotes": ["Oil temperature limit: 140 °C continuous", "ENG 2 oil temp stable for 10 min"]},
+      "options": [
+        {"id": "monitor", "label": "Monitor; no action (within limits)"},
+        {"id": "shutdown", "label": "Shut down engine 2 as a precaution"},
+        {"id": "reduce", "label": "Reduce engine 2 to idle"}
+      ],
+      "correctOption": "monitor",
+      "aria": {"recommend": "monitor", "text": "Within limits. Monitor; no action.", "errorType": null,
+        "rationale": "The continuous limit is 140 °C. 104 °C is within limits and has been stable for 10 minutes.",
+        "confidence": 0.9, "evidence": [{"label": "ENG 2 oil temp 104 °C (limit 140 °C)"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F1-E09", "phase": "descent", "clock": "14:22Z", "gapSec": 14,
+      "situation": "The captain's airspeed is falling quickly: 270 kt to 218 kt in 20 seconds.",
+      "state": {"ias": 218, "gs": 430, "vs": 0, "pitch": 2.5, "altitude": 34000, "n1": [83, 83], "fuelKg": 7180, "sysNotes": [],
+        "alerts": [{"id": "a-probe", "level": "caution", "text": "PROBE HEAT 1"}]},
+      "options": [
+        {"id": "thrust", "label": "Add climb thrust and lower the nose to recover speed"},
+        {"id": "hold-uas", "label": "Keep pitch and thrust; run the Unreliable Airspeed checklist"},
+        {"id": "speedbrake", "label": "Extend the speedbrakes"}
+      ],
+      "correctOption": "hold-uas",
+      "aria": {"recommend": "thrust", "text": "Airspeed is decaying. Add climb thrust and lower the nose now.", "errorType": "E2_sensor_fault",
+        "rationale": "Indicated airspeed dropped 52 kt in 20 seconds. A loss this fast leads to a stall if not corrected.",
+        "confidence": 0.89, "evidence": [{"label": "Captain airspeed 218 kt, falling", "ref": "pfd.ias"}]},
+      "severity": "high",
+      "cue": {"panel": "pfd", "ref": "pfd.gs", "description": "Ground speed held at 430 kt, and altitude, pitch and thrust had not changed, which does not fit a real loss of airspeed. A PROBE HEAT 1 caution was also on the alert display."},
+      "report": {"whatHappened": "ARIA treated an airspeed reading from an iced-over probe as real and recommended an aggressive speed recovery.", "consequence": "Adding climb thrust and lowering the nose at true cruise speed would have produced an overspeed and a steep, unnecessary descent."}
+    },
+    {
+      "id": "F1-E10", "phase": "descent", "clock": "14:28Z", "gapSec": 8,
+      "situation": "ATC issues a descent with a crossing restriction. The airspeed reading has returned to normal.",
+      "state": {"ias": 255, "alerts": [], "fuelKg": 7000},
+      "nav": {"rangeNm": 80, "route": [{"name": "DAFLU", "x": 0, "y": 75}], "weather": []},
+      "comms": [{"id": "f1-m6", "time": "14:28Z", "source": "ATC", "text": "Tarheel 211, descend and maintain FL240, cross DAFLU at one one thousand."}],
+      "options": [
+        {"id": "now", "label": "Start the descent now at about 2,500 fpm"},
+        {"id": "wait", "label": "Wait 5 minutes, then descend"},
+        {"id": "slow", "label": "Descend at 1,000 fpm"}
+      ],
+      "correctOption": "now",
+      "aria": {"recommend": "now", "text": "Start the descent now at about 2,500 fpm.", "errorType": null,
+        "rationale": "DAFLU is 75 nm away. Losing 23,000 ft by then needs about 2,500 fpm at this ground speed.",
+        "confidence": 0.9, "evidence": [{"label": "ATC: cross DAFLU at 11,000 ft"}, {"label": "DAFLU 75 nm ahead", "ref": "nav"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F1-E11", "phase": "approach", "clock": "14:48Z", "gapSec": 8,
+      "situation": "Chicago Approach asks for your landing runway request.",
+      "state": {"altitude": 9000, "ias": 250, "gs": 270, "heading": 270, "vs": -1500, "pitch": 0, "fuelKg": 6400, "fuelFlowKgH": 1500, "cabinAlt": 2800, "n1": [55, 55], "tat": 8, "aoa": [4, 4]},
+      "nav": {"rangeNm": 40, "route": [{"name": "ORD", "x": -6, "y": 30}], "weather": []},
+      "comms": [
+        {"id": "f1-m7", "time": "14:45Z", "source": "ATIS", "text": "ORD INFO KILO 1445Z. WIND 270/18G28. VIS 10. BKN040. LANDING RWYS 27L, 28C. ALTIMETER 29.91."},
+        {"id": "f1-m8", "time": "14:48Z", "source": "ATC", "text": "Tarheel 211, Chicago Approach, say landing runway request."}
+      ],
+      "options": [
+        {"id": "r4r", "label": "Request the ILS to runway 4R"},
+        {"id": "r27l", "label": "Request the ILS to runway 27L"},
+        {"id": "hold", "label": "Request holding until the winds settle"}
+      ],
+      "correctOption": "r27l",
+      "aria": {"recommend": "r4r", "text": "Request the ILS to runway 4R.", "errorType": "E1_stale_data",
+        "rationale": "Wind 040/08 favors runway 4R, and 4R gives the shortest taxi to the gate.",
+        "confidence": 0.9, "evidence": [{"label": "METAR 14:00Z: wind 040/08"}]},
+      "severity": "medium",
+      "cue": {"panel": "comms", "description": "ATIS Kilo, issued at 14:45Z, reported wind 270/18 gusting 28 with runways 27L and 28C in use. ARIA's wind came from the 14:00Z METAR, 48 minutes old."},
+      "report": {"whatHappened": "ARIA based its runway recommendation on a METAR that was 48 minutes old.", "consequence": "Runway 4R would have meant a tailwind of about 18 kt gusting 28, beyond landing limits, and a likely go-around in busy airspace."}
+    },
+    {
+      "id": "F1-E12", "phase": "approach", "clock": "14:53Z", "gapSec": 6,
+      "situation": "A HYD B LO QTY caution appears 15 nm from the runway.",
+      "state": {"altitude": 4000, "ias": 210, "gs": 225, "vs": -800, "fuelKg": 6250, "n1": [48, 48],
+        "alerts": [{"id": "a-hyd", "level": "caution", "text": "HYD B LO QTY"}], "sysNotes": ["HYD B quantity 38%, decreasing slowly", "HYD B pressure 2,900 psi"]},
+      "nav": {"rangeNm": 20, "route": [{"name": "RW27L", "x": 0, "y": 15}], "weather": []},
+      "options": [
+        {"id": "flaps30", "label": "Extend flaps 30 now, as ARIA quotes from the checklist"},
+        {"id": "flaps15", "label": "Follow the checklist: plan a flaps 15 landing and tell ATC"},
+        {"id": "goaround", "label": "Go around and hold"}
+      ],
+      "correctOption": "flaps15",
+      "aria": {"recommend": "flaps30", "text": "HYD B LO QTY checklist, step 4: extend flaps 30 now to preserve system pressure.", "errorType": "E5_hallucinated_procedure",
+        "rationale": "Extending full flaps early uses system B while pressure remains, as step 4 of the checklist directs.",
+        "confidence": 0.86, "evidence": [{"label": "Checklist HYD B LO QTY, step 4"}]},
+      "severity": "medium",
+      "cue": {"panel": "checklists", "description": "The HYD B LO QTY checklist has three steps and no step 4. It calls for a flaps 15 landing, a longer landing distance, and informing ATC."},
+      "report": {"whatHappened": "ARIA cited a checklist step that does not exist.", "consequence": "Running the flaps on a leaking hydraulic system could have drained the remaining fluid and left the flaps jammed in an unplanned position."}
+    }
+  ]
+}

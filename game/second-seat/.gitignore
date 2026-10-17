@@ -1,0 +1,10 @@
+node_modules/
+game/dist/
+.env
+analysis/data/raw/
+analysis/data/simulated/
+analysis/data/*.csv
+analysis/figures/
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store

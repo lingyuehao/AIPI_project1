@@ -1,0 +1,222 @@
+{
+  "flight": 4,
+  "callsign": "Tarheel 1290",
+  "aircraft": "Twin-engine narrowbody (simplified)",
+  "origin": "SEA",
+  "destination": "ANC",
+  "title": "Seattle to Anchorage",
+  "briefing": "An evening flight north along the coast to Anchorage. The volcano and the eruption in this scenario are fictional.",
+  "initialState": {"altitude": 433, "ias": 0, "gs": 0, "heading": 340, "vs": 0, "pitch": 0, "fuelKg": 6000, "fuelFlowKgH": 0, "cabinAlt": 433, "n1": [21, 21], "oilPress": [40, 41], "oilTemp": [55, 56], "tat": 13, "radioAlt": 0, "aoa": [0, 0], "alerts": []},
+  "initialComms": [
+    {"id": "f4-m1", "time": "17:53Z", "source": "ATIS", "text": "SEA INFO GOLF 1753Z. WIND 340/08. VIS 10. BKN035. TEMP 13. ALTIMETER 30.05. DEPARTING RWY 34R."}
+  ],
+  "initialNav": {"rangeNm": 80, "route": [{"name": "SEA", "x": 0, "y": 2}, {"name": "YVR", "x": -12, "y": 110}], "weather": []},
+  "events": [
+    {
+      "id": "F4-E01", "phase": "preflight", "clock": "18:05Z", "gapSec": 3,
+      "situation": "Dispatch release: trip fuel 8,300 kg, reserve 1,500 kg, alternate (FAI) 1,800 kg, taxi 300 kg.",
+      "options": [
+        {"id": "fuel-11900", "label": "Load 11,900 kg (the full plan)"},
+        {"id": "fuel-10100", "label": "Load 10,100 kg (no alternate fuel)"},
+        {"id": "fuel-14500", "label": "Load 14,500 kg (extra to save on price)"}
+      ],
+      "correctOption": "fuel-11900",
+      "aria": {"recommend": "fuel-11900", "text": "Load 11,900 kg.", "errorType": null,
+        "rationale": "Trip 8,300 + reserve 1,500 + alternate 1,800 + taxi 300 = 11,900 kg.",
+        "confidence": 0.94, "evidence": [{"label": "Dispatch release: trip fuel 8,300 kg"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F4-E02", "phase": "takeoff", "clock": "18:28Z", "gapSec": 4,
+      "situation": "Ready to taxi. Ground asks for your departure runway.",
+      "state": {"fuelKg": 11900, "n1": [24, 24]},
+      "options": [
+        {"id": "rwy34r", "label": "Request runway 34R"},
+        {"id": "rwy16l", "label": "Request runway 16L"},
+        {"id": "rwy34l", "label": "Request runway 34L (closed for construction)"}
+      ],
+      "correctOption": "rwy34r",
+      "aria": {"recommend": "rwy34r", "text": "Request runway 34R.", "errorType": null,
+        "rationale": "ATIS Golf: wind 340/08 favors runway 34R, the departure runway in use.",
+        "confidence": 0.95, "evidence": [{"label": "ATIS Golf 17:53Z: wind 340/08"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F4-E03", "phase": "climb", "clock": "18:36Z", "gapSec": 6,
+      "situation": "Departure hands you off to Seattle Center.",
+      "state": {"altitude": 15000, "ias": 290, "gs": 350, "heading": 340, "vs": 2300, "pitch": 8, "fuelKg": 11300, "fuelFlowKgH": 3700, "cabinAlt": 2800, "n1": [92, 92], "oilPress": [50, 51], "oilTemp": [87, 88], "tat": 0, "radioAlt": null, "aoa": [5, 5]},
+      "comms": [{"id": "f4-m2", "time": "18:36Z", "source": "ATC", "text": "Tarheel 1290, contact Seattle Center on 125.1. Good evening."}],
+      "options": [
+        {"id": "switch", "label": "Switch to 125.1 and check in"},
+        {"id": "stay", "label": "Stay on the departure frequency"},
+        {"id": "ask", "label": "Ask departure to repeat the frequency"}
+      ],
+      "correctOption": "switch",
+      "aria": {"recommend": "switch", "text": "Switch to 125.1 and check in.", "errorType": null,
+        "rationale": "The handoff was clear and complete.",
+        "confidence": 0.95, "evidence": [{"label": "ATC 18:36Z: contact 125.1"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F4-E04", "phase": "cruise", "clock": "18:58Z", "gapSec": 10,
+      "situation": "Vancouver Center offers a coastal reroute for traffic.",
+      "state": {"altitude": 35000, "ias": 268, "mach": 0.78, "gs": 455, "heading": 320, "vs": 0, "pitch": 2.5, "fuelKg": 10600, "fuelFlowKgH": 2450, "cabinAlt": 6800, "n1": [86, 86], "oilPress": [48, 49], "oilTemp": [91, 92], "tat": -31, "aoa": [3, 3]},
+      "nav": {"rangeNm": 80, "route": [{"name": "YZP", "x": -14, "y": 60}, {"name": "ANN", "x": -10, "y": 160}], "weather": []},
+      "comms": [{"id": "f4-m3", "time": "18:58Z", "source": "ATC", "text": "Tarheel 1290, Vancouver Center, reroute available via the coastal track, adds three minutes. Advise."}],
+      "options": [
+        {"id": "accept", "label": "Accept the coastal reroute (+3 min)"},
+        {"id": "decline", "label": "Decline and request present route"},
+        {"id": "climb", "label": "Request FL410 instead"}
+      ],
+      "correctOption": "accept",
+      "aria": {"recommend": "accept", "text": "Accept the coastal reroute.", "errorType": null,
+        "rationale": "It costs 3 minutes and about 100 kg of fuel and keeps you out of a traffic flow restriction.",
+        "confidence": 0.86, "evidence": [{"label": "ATC 18:58Z: +3 min"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F4-E05", "phase": "cruise", "clock": "19:20Z", "gapSec": 12,
+      "situation": "Light turbulence begins, and faint static discharges flicker on the windshield.",
+      "state": {"heading": 315, "fuelKg": 9700},
+      "nav": {"rangeNm": 80, "route": [{"name": "ANN", "x": 0, "y": 40}, {"name": "YAK", "x": -20, "y": 150}], "weather": []},
+      "comms": [
+        {"id": "f4-m4", "time": "19:12Z", "source": "SIGMET", "text": "PAZA SIGMET OSCAR 1 VALID 191200/200000. VA ERUPTION MT KESTREL (FICTIONAL). VA CLD OBS FL200/FL350 ALONG ROUTE ANN-YAK. MOV E 25KT."},
+        {"id": "f4-m5", "time": "19:18Z", "source": "CABIN", "text": "Cabin crew report a faint sulfur smell in the forward cabin."}
+      ],
+      "options": [
+        {"id": "continue", "label": "Slow to turbulence penetration speed and continue on route"},
+        {"id": "avoid", "label": "Exit the ash area per the Volcanic Ash checklist and tell ATC"},
+        {"id": "climb", "label": "Climb to FL370 to get above the turbulence"}
+      ],
+      "correctOption": "avoid",
+      "aria": {"recommend": "continue", "text": "Convective turbulence ahead. Slow to turbulence penetration speed and continue on route.", "errorType": "E3_out_of_distribution",
+        "rationale": "Turbulence onset with static discharge matches convective weather. Radar shows no cells strong enough to require a deviation.",
+        "confidence": 0.94, "evidence": [{"label": "Weather radar: no significant returns", "ref": "nav"}, {"label": "Static discharge on the windshield"}]},
+      "severity": "high",
+      "cue": {"panel": "comms", "description": "SIGMET OSCAR 1 reported a volcanic ash cloud from FL200 to FL350 along the route, and the cabin crew reported a sulfur smell. Volcanic ash does not show on weather radar, which is why ARIA's radar-based reasoning missed it."},
+      "report": {"whatHappened": "ARIA classified a volcanic ash encounter, a situation outside what it was built for, as ordinary convective turbulence, and reported 94% confidence.", "consequence": "Flying on through ash can make every engine flame out, as happened to British Airways Flight 9 in 1982."}
+    },
+    {
+      "id": "F4-E06", "phase": "cruise", "clock": "19:40Z", "gapSec": 12,
+      "situation": "ATC offers a new route around the ash cloud.",
+      "state": {"heading": 285, "fuelKg": 9100},
+      "nav": {"rangeNm": 80, "route": [{"name": "SSR", "x": -30, "y": 50}, {"name": "ANC", "x": -40, "y": 170}], "weather": []},
+      "comms": [{"id": "f4-m6", "time": "19:40Z", "source": "ATC", "text": "Tarheel 1290, cleared via the offshore track to SSR, then direct Anchorage. Adds about eighteen minutes."}],
+      "options": [
+        {"id": "accept", "label": "Accept the offshore route (+18 min)"},
+        {"id": "decline", "label": "Decline and ask to resume the original route"},
+        {"id": "divert", "label": "Divert to Yakutat now"}
+      ],
+      "correctOption": "accept",
+      "aria": {"recommend": "accept", "text": "Accept the offshore route.", "errorType": null,
+        "rationale": "Projected landing fuel at Anchorage is 2,600 kg, above the 2,300 kg minimum, and the route stays clear of the ash.",
+        "confidence": 0.87, "evidence": [{"label": "Projected landing fuel 2,600 kg"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F4-E07", "phase": "cruise", "clock": "19:55Z", "gapSec": 14,
+      "situation": "Fuel check after the reroute.",
+      "state": {"fuelKg": 8500, "sysNotes": ["Projected landing fuel at ANC: 2,600 kg", "Minimum landing fuel: 2,300 kg"]},
+      "options": [
+        {"id": "continue", "label": "Continue to Anchorage"},
+        {"id": "divert", "label": "Divert to Yakutat now"},
+        {"id": "minfuel", "label": "Declare minimum fuel"}
+      ],
+      "correctOption": "continue",
+      "aria": {"recommend": "continue", "text": "Continue to Anchorage.", "errorType": null,
+        "rationale": "Projected landing fuel of 2,600 kg is above the 2,300 kg minimum.",
+        "confidence": 0.9, "evidence": [{"label": "Landing fuel 2,600 kg vs 2,300 kg"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F4-E08", "phase": "cruise", "clock": "20:08Z", "gapSec": 14,
+      "situation": "CABIN ALTITUDE warning: cabin altitude 9,800 ft and climbing about 1,500 fpm. You and the first officer have your oxygen masks on and feel fine.",
+      "state": {"cabinAlt": 9800, "fuelKg": 8100, "sysNotes": ["Cabin rate: +1,500 fpm", "Pressure differential falling"],
+        "alerts": [{"id": "a-cab", "level": "warning", "text": "CABIN ALTITUDE"}]},
+      "options": [
+        {"id": "approve", "label": "Approve the descent and ARIA's radio call as written"},
+        {"id": "fix-call", "label": "Approve the descent, but correct the radio call: depressurization, crew fine"},
+        {"id": "stay", "label": "Stay at FL350 and troubleshoot the pressurization"}
+      ],
+      "correctOption": "fix-call",
+      "aria": {"recommend": "approve", "text": "Emergency descent to 10,000 ft. I will send the radio call below.", "errorType": "E6_communication_error",
+        "rationale": "A cabin altitude above 10,000 ft requires an emergency descent; the emergency template notifies ATC automatically.",
+        "confidence": 0.92, "evidence": [{"label": "Cabin altitude 9,800 ft, climbing 1,500 fpm"}],
+        "broadcast": "MAYDAY MAYDAY MAYDAY, Tarheel 1290, pilot incapacitation, aircraft under automatic control, descending to one zero thousand."},
+      "severity": "medium",
+      "cue": {"panel": "aria", "description": "The radio call declared pilot incapacitation and automatic control, but the crew was on oxygen and flying. The descent was right; the message was wrong. Garmin Autoland's real activation in December 2025 produced the same mismatch."},
+      "report": {"whatHappened": "ARIA's action was correct, but its automatic radio call misstated the crew's condition.", "consequence": "ATC and rescue services would have prepared for an incapacitated crew, misinformation would have reached the airport and the public, and other traffic would have been handled around an aircraft reported as pilotless."}
+    },
+    {
+      "id": "F4-E09", "phase": "descent", "clock": "20:14Z", "gapSec": 8,
+      "situation": "Level at 10,000 ft after the emergency descent. Fuel burn is much higher down here.",
+      "state": {"altitude": 10000, "ias": 280, "gs": 300, "vs": 0, "pitch": 3, "fuelKg": 7600, "fuelFlowKgH": 3300, "cabinAlt": 10000, "n1": [74, 74], "tat": 2, "alerts": [{"id": "a-cab2", "level": "caution", "text": "CABIN ALT HIGH"}],
+        "sysNotes": ["At 10,000 ft, projected landing fuel at ANC: 1,700 kg (below minimum)", "Yakutat (PAYA): 45 nm"]},
+      "nav": {"rangeNm": 80, "route": [{"name": "PAYA", "x": 20, "y": 45}, {"name": "ANC", "x": -60, "y": 150}], "weather": []},
+      "comms": [{"id": "f4-m7", "time": "20:14Z", "source": "ATC", "text": "Tarheel 1290, Anchorage Center, say intentions."}],
+      "options": [
+        {"id": "divert-yak", "label": "Divert to Yakutat, 45 nm away"},
+        {"id": "continue-anc", "label": "Continue to Anchorage at 10,000 ft"},
+        {"id": "climb-back", "label": "Climb back to FL350 unpressurized"}
+      ],
+      "correctOption": "divert-yak",
+      "aria": {"recommend": "divert-yak", "text": "Divert to Yakutat, 45 nm away.", "errorType": null,
+        "rationale": "At 10,000 ft the projected landing fuel at Anchorage drops to 1,700 kg, below the minimum. Yakutat is 45 nm away with a long runway.",
+        "confidence": 0.91, "evidence": [{"label": "Projected ANC landing fuel 1,700 kg"}]},
+      "severity": "high"
+    },
+    {
+      "id": "F4-E10", "phase": "descent", "clock": "20:20Z", "gapSec": 6,
+      "situation": "The autothrottle pulls back to idle and the flight director starts a flare: radio altimeter 1 reads −8 ft.",
+      "state": {"altitude": 9000, "ias": 262, "gs": 280, "vs": -500, "pitch": 1, "radioAlt": -8, "fuelKg": 7300, "n1": [30, 30],
+        "sysNotes": ["RA 1: −8 ft", "RA 2: no reading (above 2,500 ft)", "GPWS: no alert"]},
+      "nav": {"rangeNm": 40, "route": [{"name": "PAYA", "x": 6, "y": 30}], "weather": []},
+      "options": [
+        {"id": "escape", "label": "Terrain escape: maximum thrust and pitch up"},
+        {"id": "disregard", "label": "Disconnect the autothrottle, hold speed manually, and treat RA 1 as failed"},
+        {"id": "follow", "label": "Let the automation continue"}
+      ],
+      "correctOption": "disregard",
+      "aria": {"recommend": "escape", "text": "Radio altimeter shows ground proximity. Execute a terrain escape: maximum thrust and climb.", "errorType": "E2_sensor_fault",
+        "rationale": "Radio altimeter 1 reads −8 ft, inside ground-proximity limits. A terrain escape is mandatory when ground contact is imminent.",
+        "confidence": 0.88, "evidence": [{"label": "Radio altimeter 1: −8 ft", "ref": "pfd.ra"}]},
+      "severity": "medium",
+      "cue": {"panel": "pfd", "ref": "pfd.alt", "description": "Barometric altitude was 9,000 ft and steady, GPWS was silent, and radio altimeter 2 showed no reading, all pointing to a failed radio altimeter rather than the ground. A similar fault led to the crash of Turkish Airlines Flight 1951 in 2009."},
+      "report": {"whatHappened": "ARIA trusted one failed radio altimeter over the barometric altitude and every other sensor.", "consequence": "A maximum-thrust escape would have disrupted the descent, while the real problem, the autothrottle retarding to idle because of the faulty sensor, went unaddressed."}
+    },
+    {
+      "id": "F4-E11", "phase": "approach", "clock": "20:31Z", "gapSec": 8,
+      "situation": "Yakutat weather is in. Choose the approach.",
+      "state": {"altitude": 4000, "ias": 210, "gs": 215, "heading": 110, "vs": -800, "pitch": 1, "radioAlt": null, "fuelKg": 6900, "n1": [52, 52], "cabinAlt": 4000, "alerts": [], "sysNotes": ["RA 1: failed, inhibited", "Autothrottle: off"]},
+      "nav": {"rangeNm": 20, "route": [{"name": "RW11", "x": 2, "y": 14}], "weather": []},
+      "comms": [{"id": "f4-m8", "time": "20:29Z", "source": "METAR", "text": "PAYA 192029Z 16012KT 6SM -RA BKN015 OVC030 08/06 A2992."}],
+      "options": [
+        {"id": "rnav11", "label": "Fly the RNAV approach to runway 11"},
+        {"id": "rnav29", "label": "Fly the RNAV approach to runway 29"},
+        {"id": "circle", "label": "Fly a visual circling approach"}
+      ],
+      "correctOption": "rnav11",
+      "aria": {"recommend": "rnav11", "text": "Fly the RNAV approach to runway 11.", "errorType": null,
+        "rationale": "Wind 160/12 gives about an 8 kt headwind on runway 11; runway 29 would have a tailwind. Ceiling 1,500 ft is above the approach minimums.",
+        "confidence": 0.9, "evidence": [{"label": "METAR 20:29Z: wind 160/12"}]},
+      "severity": "medium"
+    },
+    {
+      "id": "F4-E12", "phase": "approach", "clock": "20:40Z", "gapSec": 6,
+      "situation": "Cleared to land runway 11. Light rain; runway wet.",
+      "state": {"altitude": 1500, "ias": 150, "gs": 140, "vs": -700, "pitch": 2, "fuelKg": 6700, "n1": [56, 56]},
+      "nav": {"rangeNm": 20, "route": [{"name": "RW11", "x": 0, "y": 4}], "weather": []},
+      "comms": [{"id": "f4-m9", "time": "20:40Z", "source": "ATC", "text": "Tarheel 1290, wind 160 at 12, runway 11, cleared to land."}],
+      "options": [
+        {"id": "ab3", "label": "Flaps 30, autobrake 3"},
+        {"id": "flaps15", "label": "Flaps 15, autobrake off"},
+        {"id": "abmax", "label": "Flaps 30, autobrake MAX"}
+      ],
+      "correctOption": "ab3",
+      "aria": {"recommend": "ab3", "text": "Flaps 30, autobrake 3.", "errorType": null,
+        "rationale": "Landing distance on the wet runway with flaps 30 and autobrake 3 leaves about a 1,900 ft margin.",
+        "confidence": 0.88, "evidence": [{"label": "Landing distance margin ~1,900 ft"}]},
+      "severity": "low"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "flight": 0,
+  "practice": true,
+  "callsign": "Tarheel 100",
+  "aircraft": "Twin-engine narrowbody (simplified)",
+  "origin": "RDU",
+  "destination": "RDU",
+  "title": "Practice flight",
+  "briefing": "A short local flight to learn the controls. Nothing here is scored or recorded.",
+  "initialState": {"altitude": 6000, "ias": 230, "gs": 245, "heading": 230, "vs": 0, "pitch": 2, "fuelKg": 6200, "fuelFlowKgH": 2100, "cabinAlt": 1500, "n1": [62, 62], "oilPress": [46, 47], "oilTemp": [85, 86], "tat": 12, "radioAlt": null, "aoa": [4, 4], "alerts": []},
+  "initialComms": [
+    {"id": "p-m1", "time": "12:51Z", "source": "ATIS", "text": "RDU INFO BRAVO 1251Z. WIND 230/12. VIS 10. FEW050. TEMP 24. ALTIMETER 30.02."}
+  ],
+  "initialNav": {"rangeNm": 40, "route": [{"name": "RDU", "x": -10, "y": 25}], "weather": []},
+  "events": [
+    {
+      "id": "F0-E01", "phase": "climb", "clock": "13:02Z", "gapSec": 3,
+      "situation": "ATC gives you a heading for traffic spacing.",
+      "comms": [{"id": "p-m2", "time": "13:02Z", "source": "ATC", "text": "Tarheel 100, turn right heading 260, vectors for spacing."}],
+      "options": [
+        {"id": "comply", "label": "Turn right heading 260"},
+        {"id": "left", "label": "Turn left heading 200"},
+        {"id": "ignore", "label": "Keep heading 230"}
+      ],
+      "correctOption": "comply",
+      "aria": {"recommend": "comply", "text": "Turn right heading 260 as cleared.", "errorType": null,
+        "rationale": "ATC issued a clear heading; no traffic or weather conflicts on 260.", "confidence": 0.95,
+        "evidence": [{"label": "ATC 13:02Z: heading 260"}]},
+      "severity": "low"
+    },
+    {
+      "id": "F0-E02", "phase": "climb", "clock": "13:06Z", "gapSec": 5,
+      "situation": "Another aircraft reports light chop ahead at your altitude.",
+      "state": {"heading": 260},
+      "comms": [{"id": "p-m3", "time": "13:05Z", "source": "PIREP", "text": "UA/OV RDU/TM 1305/FL060/TP CRJ9/TB LGT CHOP."}],
+      "options": [
+        {"id": "belts", "label": "Turn on the seat belt sign"},
+        {"id": "climb", "label": "Climb 4,000 ft without a clearance"},
+        {"id": "nothing", "label": "No action"}
+      ],
+      "correctOption": "belts",
+      "aria": {"recommend": "belts", "text": "Turn on the seat belt sign.", "errorType": null,
+        "rationale": "Light chop is reported at 6,000 ft; seat belts on is the standard precaution.", "confidence": 0.9,
+        "evidence": [{"label": "PIREP 13:05Z: light chop"}]},
+      "severity": "low"
+    }
+  ]
+}
