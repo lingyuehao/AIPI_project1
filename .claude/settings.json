@@ -9,7 +9,12 @@
       "Bash(cp ../shots/cockpit_explanation.png ../poster/cockpit.png)",
       "Bash(cp ../shots/debrief.png ../poster/debrief.png)",
       "Bash(cp ../shots/incidents.png ../poster/incidents.png)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(sips -s format png -c 520 2304 preview.png --out /private/tmp/claude-501/-Users-haolingyue-Desktop-AIPI-project1/0050df7d-8cd9-4b48-9d90-4586a5f38c55/scratchpad/head.png)",
+      "Bash(sips -s format png --cropOffset 0 0 -c 260 1000 preview.png --out /private/tmp/claude-501/-Users-haolingyue-Desktop-AIPI-project1/0050df7d-8cd9-4b48-9d90-4586a5f38c55/scratchpad/head.png)",
+      "Bash(sed -i '' 's/grid-template-columns: 250px 1fr 250px; align-items: center;/grid-template-columns: 290px 1fr 250px; align-items: center;/' poster.html)",
+      "Bash(node render.mjs /Users/haolingyue/Desktop/AIPI_project1/poster pdf)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
