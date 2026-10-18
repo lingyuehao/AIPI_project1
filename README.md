@@ -11,6 +11,7 @@ Lingyue Hao · AIPI 590 (Emerging Trends in Explainable AI), Duke University, Fa
 - Play: https://lingyuehao.github.io/AIPI_project1/
 - Quick tour with short waits between decisions: https://lingyuehao.github.io/AIPI_project1/?fast=1
 - AI Incident Files, all twelve reports without playing: https://lingyuehao.github.io/AIPI_project1/?view=incidents
+- Poster, 48 × 36 in: [poster/poster.pdf](poster/poster.pdf) (source in `poster/poster.html`)
 
 A full session takes up to 45 minutes. The quick tour skips the waits between decisions, which saves about 7 minutes.
 
