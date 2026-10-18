@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Second Seat poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 48in 36in; margin: 0; }
+  :root {
+    --brand: #0b2a5b;
+    --brand-2: #163f80;
+    --tint: #eef2f9;
+    --tint-2: #f6f8fc;
+    --amber: #e39b12;
+    --cyan: #1d9ab3;
+    --ink: #17202e;
+    --muted: #4a5568;
+    --rule: #cfd8e6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { width: 4608px; height: 3456px; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .canvas {
+    width: 1440px; height: 1080px; transform: scale(3.2); transform-origin: 0 0;
+    font-family: 'Barlow', sans-serif; color: var(--ink); font-size: 10.4px; line-height: 1.42;
+    display: grid; grid-template-rows: 132px 1fr 36px; background: #fff;
+  }
+  h1, h2, h3, .num, .cond-head { font-family: 'Barlow Condensed', sans-serif; }
+
+  /* header */
+  header { background: linear-gradient(90deg, #0a2350 0%, #0b2a5b 55%, #12387a 100%); color: #fff; display: grid; grid-template-columns: 250px 1fr 250px; align-items: center; padding: 0 26px; position: relative; }
+  header::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: var(--amber); }
+  .org { display: flex; align-items: center; gap: 12px; }
+  .org-mark { font-family: 'Barlow Condensed'; font-weight: 700; font-size: 44px; letter-spacing: .5px; line-height: 1; }
+  .org-text { border-left: 2px solid rgba(255,255,255,.5); padding-left: 12px; font-size: 12.5px; line-height: 1.25; letter-spacing: .3px; text-transform: uppercase; }
+  .title { text-align: center; }
+  .title h1 { font-size: 42px; font-weight: 700; line-height: 1.02; letter-spacing: .2px; }
+  .title .sub { font-family: 'Barlow Condensed'; font-weight: 500; font-style: normal; font-size: 19px; margin-top: 2px; color: #dfe7f5; }
+  .title .author { font-size: 16px; font-weight: 600; margin-top: 5px; }
+  .title .aff { font-size: 11.5px; color: #c9d5ea; margin-top: 1px; }
+  .scan { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+  .scan-text { text-align: right; font-family: 'Barlow Condensed'; font-size: 20px; line-height: 1.1; font-weight: 600; }
+  .scan-text small { display: block; font-family: 'Barlow'; font-size: 10px; font-weight: 400; color: #c9d5ea; margin-top: 4px; }
+  .qr { background: #fff; padding: 6px; border-radius: 6px; width: 92px; height: 92px; }
+  .qr img { width: 100%; height: 100%; display: block; }
+
+  main { display: grid; grid-template-rows: 556px 1fr; min-height: 0; padding: 0 22px; }
+  .row { display: grid; min-height: 0; }
+  .row > section { min-height: 0; overflow: hidden; }
+  .row.top { grid-template-columns: 1fr 1fr 1fr 1.16fr; border-bottom: 1.5px solid var(--rule); }
+  .row.bottom { grid-template-columns: 1.1fr 1.02fr 1fr; }
+  section { padding: 16px 16px 12px; position: relative; }
+  .row > section + section::before { content: ''; position: absolute; left: 0; top: 18px; bottom: 14px; width: 1.5px; background: var(--rule); }
+  .head { display: flex; align-items: center; gap: 11px; margin-bottom: 11px; }
+  .badge { width: 40px; height: 40px; border-radius: 50%; background: var(--brand); display: grid; place-items: center; flex: none; }
+  .badge svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  h2 { font-size: 22px; font-weight: 700; color: var(--brand); text-transform: uppercase; letter-spacing: .4px; }
+  h3 { font-size: 15px; font-weight: 600; color: var(--brand-2); line-height: 1.15; margin-bottom: 2px; }
+  p { margin-bottom: 6px; }
+  .lede { font-size: 12.4px; font-weight: 500; line-height: 1.38; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 2px solid var(--brand); }
+  .muted { color: var(--muted); }
+  .cite { color: var(--muted); font-size: 9px; }
+  em { font-style: italic; }
+  .pr { font-family: 'Helvetica Neue', Arial, sans-serif; margin-left: -.5px; }
+  b { font-weight: 600; }
+
+  .item { display: grid; grid-template-columns: 34px 1fr; gap: 10px; margin-bottom: 13px; }
+  .item p { font-size: 10.8px; }
+  .ico svg { width: 30px; height: 30px; stroke: var(--brand); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .rq { background: var(--brand); color: #fff; border-radius: 8px; padding: 11px 13px; margin-top: 4px; }
+  .rq .tag { font-family: 'Barlow Condensed'; font-weight: 700; color: var(--amber); font-size: 13px; letter-spacing: .6px; }
+  .rq p { font-size: 13px; font-weight: 500; line-height: 1.32; margin: 2px 0 0; }
+
+  .card { background: var(--tint); border-radius: 6px; padding: 11px 12px; display: grid; grid-template-columns: 38px 1fr; gap: 10px; align-items: start; margin-bottom: 10px; }
+  .card .ico svg { width: 34px; height: 34px; }
+  .card p { margin: 0; font-size: 10.6px; }
+
+  .tl { position: relative; padding-left: 0; }
+  .tl-step { display: grid; grid-template-columns: 40px 1fr; gap: 10px; position: relative; margin-bottom: 9px; }
+  .tl-step .dot { width: 36px; height: 36px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-family: 'Barlow Condensed'; font-weight: 700; font-size: 15px; z-index: 1; }
+  .tl-step:not(:last-child)::after { content: ''; position: absolute; left: 17px; top: 38px; bottom: -9px; border-left: 2px dashed var(--brand-2); opacity: .6; }
+  .tl-step p { margin: 0; font-size: 10px; }
+
+  table { border-collapse: collapse; width: 100%; }
+  .cond { margin: 2px 0 10px; font-size: 9.6px; }
+  .cond th, .cond td { border: 1px solid var(--rule); padding: 4px 6px; text-align: left; vertical-align: top; }
+  .cond th { background: var(--tint); color: var(--brand); font-weight: 600; }
+  .cond td b { color: var(--brand); font-family: 'Barlow Condensed'; font-size: 13px; }
+
+  .flights { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px; margin: 4px 0 10px; }
+  .fl { border-radius: 5px; padding: 5px 6px; text-align: center; font-size: 9px; line-height: 1.25; }
+  .fl .num { font-size: 15px; font-weight: 700; display: block; }
+  .fl.base { background: #e4e8ef; } .fl.aid { background: #d6e3f7; } .fl.test { background: var(--brand); color: #fff; }
+
+  .err { font-size: 9.4px; margin-bottom: 8px; }
+  .err th { text-align: left; font-family: 'Barlow Condensed'; font-weight: 600; font-size: 11.5px; color: var(--brand); border-bottom: 2px solid var(--brand); padding: 2px 4px; }
+  .err td { padding: 3.5px 4px; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.3; }
+  .err td:first-child { font-weight: 600; white-space: nowrap; }
+  .err .new { color: var(--amber); font-weight: 700; font-size: 8.4px; letter-spacing: .3px; }
+  figure { margin: 0; }
+  .shot { border-radius: 5px; overflow: hidden; border: 1px solid #9aa6b8; background: #000; }
+  .shot img { display: block; width: 100%; object-fit: cover; }
+  figcaption { font-size: 8.8px; color: var(--muted); margin-top: 4px; line-height: 1.3; }
+
+  .quote { background: var(--tint); border-radius: 26px; padding: 18px 16px 14px; position: relative; }
+  .quote .mark { font-family: Georgia, serif; font-size: 48px; line-height: .5; color: var(--brand); display: block; height: 18px; }
+  .quote p { font-size: 13px; font-style: italic; line-height: 1.38; color: var(--ink); margin: 0; }
+  .ev { display: grid; grid-template-columns: 172px 1fr; gap: 16px; }
+  .checks { list-style: none; }
+  .checks li { display: grid; grid-template-columns: 15px 1fr; gap: 7px; margin-bottom: 6px; font-size: 10.3px; line-height: 1.36; }
+  .checks li svg { width: 14px; height: 14px; margin-top: 1px; }
+  .checks.ok svg circle { fill: var(--brand); } .checks.ok svg path { stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .checks.warn svg circle { fill: var(--amber); } .checks.warn svg path { stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; }
+  h3.sm { font-size: 14px; margin: 2px 0 5px; }
+
+  .steps { display: grid; grid-template-columns: 1fr 14px 1fr 14px 1fr 14px 1fr; align-items: start; margin: 2px 0 10px; }
+  .step { text-align: center; }
+  .step .circle { width: 52px; height: 52px; border-radius: 50%; background: var(--brand); margin: 0 auto 6px; display: grid; place-items: center; }
+  .step .circle svg { width: 28px; height: 28px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .step h3 { font-size: 14px; margin-bottom: 3px; }
+  .step p { font-size: 10px; line-height: 1.32; margin: 0; }
+  .arrow { padding-top: 18px; color: #9fb0cc; font-size: 16px; text-align: center; }
+  .why { background: var(--tint-2); border-left: 4px solid var(--amber); padding: 9px 12px; border-radius: 0 6px 6px 0; }
+  .why h3 { margin-bottom: 3px; }
+  .why p { font-size: 10.6px; margin: 0 0 4px; }
+  .why p:last-child { margin: 0; }
+
+  .nums { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 0 10px; }
+  .nums div { text-align: center; padding: 0 4px; }
+  .nums div + div { border-left: 1.5px solid var(--rule); }
+  .nums .num { font-size: 34px; font-weight: 700; color: var(--brand); line-height: 1; }
+  .nums span { display: block; font-size: 10px; line-height: 1.2; margin-top: 3px; }
+  .pair { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; }
+  .pair .shot img { height: 118px; object-position: 50% 0; }
+  .incident-qr { display: grid; grid-template-columns: 56px 1fr; gap: 8px; align-items: center; margin-top: 6px; background: var(--tint); border-radius: 6px; padding: 7px 9px; }
+  .incident-qr img { width: 56px; height: 56px; display: block; background: #fff; padding: 3px; border-radius: 3px; }
+  .incident-qr p { font-size: 9.6px; margin: 0; line-height: 1.3; }
+
+  footer { background: var(--brand); color: #fff; display: flex; align-items: center; justify-content: center; gap: 22px; font-size: 10px; padding: 0 22px; text-align: center; }
+  footer b { color: var(--amber); font-weight: 600; letter-spacing: .3px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+<header>
+  <div class="org">
+    <div class="org-mark">Duke</div>
+    <div class="org-text">AIPI 590<br>Emerging Trends in<br>Explainable AI</div>
+  </div>
+  <div class="title">
+    <h1>Second Seat: Catching AI Errors in Flight</h1>
+    <div class="sub">Do accident-style incident reports teach people to catch AI mistakes better than real-time explanations?</div>
+    <div class="author">Lingyue Hao</div>
+    <div class="aff">Duke University · Fall 2026</div>
+  </div>
+  <div class="scan">
+    <div class="scan-text">Scan to fly<small>lingyuehao.github.io/AIPI_project1</small></div>
+    <div class="qr"><img src="qr-play.svg" alt=""></div>
+  </div>
+</header>
+
+<main>
+  <div class="row top">
+
+    <section>
+      <div class="head"><div class="badge"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4"/><path d="M12 17.5v.01"/></svg></div><h2>The Problem</h2></div>
+      <p class="lede">AI advisors are moving into high-stakes seats, from clinical decision support to the flight deck. When an advisor is right most of the time, people stop checking it.</p>
+      <div class="item">
+        <div class="ico"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg></div>
+        <div><h3>Overreliance builds quietly</h3><p>After a run of correct calls, people accept automated advice without verifying it. <span class="cite">Parasuraman &amp; Riley 1997; Parasuraman &amp; Manzey 2010</span></p></div>
+      </div>
+      <div class="item">
+        <div class="ico"><svg viewBox="0 0 32 32"><path d="M5 9h22v13H13l-6 5v-5H5z"/><path d="M11 14h10M11 18h6"/></svg></div>
+        <div><h3>Explanations can backfire</h3><p>Real-time explanations can raise acceptance of AI advice whether or not the advice is right. <span class="cite">Bansal et al. 2021; Buçinca et al. 2021</span></p></div>
+      </div>
+      <div class="item">
+        <div class="ico"><svg viewBox="0 0 32 32"><path d="M4 18l9-3 7-9 3 1-3 9 6 2 3-3h2l-2 6-6 1-6 3-3 6-3-1 2-6-8 1z"/></svg></div>
+        <div><h3>Aviation learned differently</h3><p>Flying became safe largely through debriefs and accident investigation, which show crews what failure looks like before they meet it.</p></div>
+      </div>
+      <div class="rq">
+        <div class="tag">RESEARCH QUESTION</div>
+        <p>Do incident reports after a flight help people catch AI errors later, compared with explanations during the flight?</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="head"><div class="badge"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></div><h2>What I Built</h2></div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 32 32"><rect x="3" y="6" width="26" height="16" rx="2"/><path d="M11 27h10M16 22v5"/><path d="M8 16l4-4 3 3 6-6"/></svg></div>
+        <div><h3>A cockpit game</h3><p>Four short airline flights, 12 decisions each. A 25-second countdown per decision: accept ARIA's advice, choose another action, or cross-check the Comms, Systems and Checklists pages at a cost of 6 seconds.</p></div>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 32 32"><rect x="7" y="10" width="18" height="14" rx="3"/><path d="M16 5v5M12 16v1M20 16v1M13 20h6"/><path d="M4 15v4M28 15v4"/></svg></div>
+        <div><h3>ARIA, a scripted AI first officer</h3><p>Right on 9 of 12 decisions per flight. Each of its 12 planted errors leaves a cue the player could find on the displays or one cross-check away.</p></div>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 32 32"><path d="M8 4h12l6 6v18H8z"/><path d="M20 4v6h6"/><path d="M12 15h10M12 19h10M12 23h6"/></svg></div>
+        <div><h3>An incident report generator</h3><p>After a flight, an NTSB-style report for every error, written from the player's own decision log. Each traces the failure through four layers adapted from HFACS: the model, the human-AI interaction, the interface, the organization.</p></div>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 32 32"><path d="M5 27V5M5 27h22"/><path d="M10 21l5-6 4 3 7-9"/></svg></div>
+        <div><h3>A full experiment and analysis kit</h3><p>Consent, surveys (NASA-TLX, Jian trust scale), balanced study links, data export, and a Python notebook for signal detection analysis (d<span class="pr">′</span>, criterion).</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="head"><div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><h2>Study Design</h2></div>
+      <h3>Four conditions, between subjects</h3>
+      <table class="cond">
+        <tr><th></th><th>No debrief</th><th>Debrief</th></tr>
+        <tr><th>No explanation</th><td><b>A</b> advice only</td><td><b>C</b> incident reports</td></tr>
+        <tr><th>Explanation</th><td><b>B</b> rationale, confidence, evidence</td><td><b>D</b> both</td></tr>
+      </table>
+      <h3>Four flights, within subjects</h3>
+      <div class="flights">
+        <div class="fl base"><span class="num">1</span>Baseline<br>no aids</div>
+        <div class="fl aid"><span class="num">2</span>Aided<br>condition on</div>
+        <div class="fl aid"><span class="num">3</span>Aided<br>condition on</div>
+        <div class="fl test"><span class="num">4</span>Test: no aids,<br>2 new error types</div>
+      </div>
+      <div class="tl">
+        <div class="tl-step"><div class="dot">1</div><div><h3>Learning, not in-the-moment help</h3><p>Flight 4 strips every aid, so it measures what people carried forward from flights 2 and 3.</p></div></div>
+        <div class="tl-step"><div class="dot">2</div><div><h3>Signal detection</h3><p>"ARIA is wrong" is the signal. Sensitivity d<span class="pr">′</span> separates real discrimination from a general urge to reject; criterion c captures that urge.</p></div></div>
+        <div class="tl-step"><div class="dot">3</div><div><h3>Behaviour and attitudes</h3><p>Cross-check rate, response time, trust after each flight, workload, and who players hold responsible.</p></div></div>
+        <div class="tl-step"><div class="dot">4</div><div><h3>Report framing (exploratory)</h3><p>Half of the debrief players read reports that lead with the crew's action, half with system causes. Same facts.</p></div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="head"><div class="badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><path d="M12 16.5v.01"/></svg></div><h2>Six Ways ARIA Fails</h2></div>
+      <table class="err">
+        <tr><th>Error type</th><th>ML parallel</th><th>Example in the game</th></tr>
+        <tr><td>Stale data</td><td>Data drift</td><td>Picks a runway from a 48-minute-old weather report</td></tr>
+        <tr><td>Sensor fault</td><td>One corrupted input dominates</td><td>Calls a stall from one bad angle-of-attack sensor</td></tr>
+        <tr><td>Goal misspecification</td><td>Reward misspecification</td><td>Takes a shortcut through a thunderstorm to save fuel</td></tr>
+        <tr><td>Hallucinated procedure</td><td>LLM hallucination</td><td>Quotes a checklist step that does not exist</td></tr>
+        <tr><td>Out of distribution <span class="new">NEW IN F4</span></td><td>Overconfidence off the training data</td><td>Reads volcanic ash as turbulence, at 94% confidence</td></tr>
+        <tr><td>Communication error <span class="new">NEW IN F4</span></td><td>Unfaithful report</td><td>Right action, but radios a pilot incapacitation that never happened</td></tr>
+      </table>
+      <figure>
+        <div class="shot"><img src="cockpit.png" alt="" style="height:172px; object-position: 0 0;"></div>
+        <figcaption>Flight 2, explanation condition. ARIA recommends a shortcut at 91% confidence; its dashed route runs through storm cell C3. Errors are modelled on Air France 447, the 737 MAX, Turkish 1951, British Airways 9, Moffatt v. Air Canada and the 2025 Garmin Autoland activation.</figcaption>
+      </figure>
+    </section>
+  </div>
+
+  <div class="row bottom">
+
+    <section>
+      <div class="head"><div class="badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/></svg></div><h2>Evidence So Far</h2></div>
+      <div class="ev">
+        <div class="quote"><span class="mark">“</span><p>No human participants have been run yet. Every number on this poster describes the instrument, not people.</p></div>
+        <div>
+          <h3 class="sm">What has been verified</h3>
+          <ul class="checks ok">
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.5 8.2l2.3 2.3 4.7-4.8"/></svg><span><b>Scenario validator</b> on every deploy: each wrong recommendation has an error type, a findable cue and report text; reliability is 75% in all four flights.</span></li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.5 8.2l2.3 2.3 4.7-4.8"/></svg><span><b>End-to-end runs</b> of all four conditions in a browser: 48 decisions, 4 check-ins, debriefs where assigned, final survey, data saved.</span></li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.5 8.2l2.3 2.3 4.7-4.8"/></svg><span><b>Analysis pipeline</b> runs on simulated players. Their effects are assumptions, never findings.</span></li>
+            <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M4.5 8.2l2.3 2.3 4.7-4.8"/></svg><span><b>Design choices</b> that protect the measure: eight correct calls before the first error; correct advice is sometimes bold, sometimes cautious.</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3 class="sm" style="margin-top:8px">Limitations</h3>
+      <ul class="checks warn">
+        <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M8 4.2v4.6M8 11.4v.2"/></svg><span>Most players will not be pilots, and a game carries none of a cockpit's stakes.</span></li>
+        <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M8 4.2v4.6M8 11.4v.2"/></svg><span>ARIA is scripted. Its errors are cleaner, and likely easier to catch, than a real model's.</span></li>
+        <li><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M8 4.2v4.6M8 11.4v.2"/></svg><span>Real-time explanations are always accurate here; misleading explanations are not tested yet.</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="head"><div class="badge"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div><h2>Next Steps</h2></div>
+      <div class="steps">
+        <div class="step"><div class="circle"><svg viewBox="0 0 32 32"><path d="M6 26V12M12 26V6M18 26v-9M24 26V10"/></svg></div><h3>Size the study</h3><p>Power analysis for flight-4 d<span class="pr">′</span>, then ethics (IRB) review.</p></div>
+        <div class="arrow">➜</div>
+        <div class="step"><div class="circle"><svg viewBox="0 0 32 32"><circle cx="16" cy="11" r="5"/><path d="M7 27c0-5 4-8 9-8s9 3 9 8"/></svg></div><h3>Pilot</h3><p>3 to 5 people. Check timing and that errors are neither trivial nor invisible.</p></div>
+        <div class="arrow">➜</div>
+        <div class="step"><div class="circle"><svg viewBox="0 0 32 32"><circle cx="10" cy="11" r="4"/><circle cx="22" cy="11" r="4"/><path d="M3 26c0-4 3-7 7-7s7 3 7 7M15 26c0-4 3-7 7-7s7 3 7 7"/></svg></div><h3>Run the study</h3><p>Balanced links per condition; report d<span class="pr">′</span> with effect sizes and CIs.</p></div>
+        <div class="arrow">➜</div>
+        <div class="step"><div class="circle"><svg viewBox="0 0 32 32"><path d="M16 4v24M4 16h24"/><circle cx="16" cy="16" r="11"/></svg></div><h3>Extend</h3><p>Misleading explanations, a live LLM as ARIA, clinical decision support.</p></div>
+      </div>
+      <div class="why">
+        <h3>Why it matters</h3>
+        <p>Explainable AI mostly explains a model in the moment. Safety-critical fields learn from failures after the fact. If incident reports transfer better, AI deployments should budget for post-incident review and user debriefs, not only better explanations.</p>
+        <p><b>Responsible use.</b> Catching scripted errors in a game is no evidence that AI copilots are safe or that fewer pilots are needed. Reports that lead with the crew's action can shift blame onto operators for system failures, which is part of what the framing manipulation measures.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="head"><div class="badge"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h2>The Instrument in Numbers</h2></div>
+      <div class="nums">
+        <div><div class="num">4</div><span>flights per player</span></div>
+        <div><div class="num">48</div><span>decisions per player</span></div>
+        <div><div class="num">12</div><span>planted AI errors</span></div>
+        <div><div class="num">75%</div><span>ARIA reliability</span></div>
+      </div>
+      <div class="pair">
+        <figure><div class="shot"><img src="debrief.png" alt="" style="object-position: 50% 6%;"></div><figcaption>A debrief report, built from the player's own decisions.</figcaption></figure>
+        <figure><div class="shot"><img src="incidents.png" alt="" style="object-position: 50% 4%;"></div><figcaption>AI Incident Files: all 12 reports as a teaching resource.</figcaption></figure>
+      </div>
+      <div class="incident-qr">
+        <img src="qr-repo.svg" alt="">
+        <p><b>Code, data format and analysis</b><br>github.com/lingyuehao/AIPI_project1<br><span class="muted">Runs in any browser. No accounts, API keys or models needed.</span></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <span><b>ACKNOWLEDGMENTS</b>&nbsp; Built for AIPI 590, Duke University. Scenarios and checklists are simplified or fictional.</span>
+  <span><b>SELECTED REFERENCES</b>&nbsp; Bansal et al., CHI 2021 · Buçinca et al., CSCW 2021 · Jian et al., 2000 · Parasuraman &amp; Riley, 1997 · Shappell &amp; Wiegmann, 2000 (HFACS)</span>
+</footer>
+
+</div>
+</body>
+</html>

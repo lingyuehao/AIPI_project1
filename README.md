@@ -4,7 +4,7 @@ Second Seat is a browser game for studying how people catch mistakes made by an 
 
 The project borrows an idea from aviation safety. Flying got safer largely because crews and investigators study what went wrong after the fact, through debriefs and accident reports. Most explainable AI work does the opposite and explains the model in the moment. Second Seat is built to compare the two.
 
-AIPI 590 (Emerging Trends in Explainable AI), Duke University, Fall 2026.
+Lingyue Hao · AIPI 590 (Emerging Trends in Explainable AI), Duke University, Fall 2026.
 
 ## Links
 
