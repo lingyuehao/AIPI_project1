@@ -32,7 +32,7 @@ export function Consent({ onAgree }: { onAgree: () => void }) {
         time by closing the page; nothing is kept from an unfinished session unless you download it.
       </p>
       <h2>Questions</h2>
-      <p>Contact the researcher listed by your instructor or recruiter. [Add your contact details here before running the study.]</p>
+      <p>Contact the researcher through the AIPI 590 course staff at Duke University, or through the person who sent you this link.</p>
       <label className="check">
         <input type="checkbox" checked={ok} onChange={(e) => setOk(e.target.checked)} />I am 18 or older, I have read this page, and I agree to take
         part.
