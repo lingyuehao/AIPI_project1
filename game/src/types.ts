@@ -1,4 +1,3 @@
-// Shared types for scenarios, the flight engine and logging.
 
 export type Phase = 'preflight' | 'takeoff' | 'climb' | 'cruise' | 'descent' | 'approach';
 
@@ -55,12 +54,12 @@ export type CommsSource =
 
 export interface CommsMessage {
   id: string;
-  time: string; // e.g. "14:45Z"
+  time: string;
   source: CommsSource;
   text: string;
 }
 
-/** Positions in nautical miles relative to the aircraft: x to the right, y straight ahead. */
+// nm from the aircraft; x right, y ahead
 export interface NavPoint {
   name: string;
   x: number;
@@ -93,8 +92,8 @@ export interface Evidence {
 }
 
 export interface AriaAdvice {
-  recommend: string; // option id ARIA recommends
-  text: string; // the advice as shown to every condition
+  recommend: string;
+  text: string;
   errorType: ErrorType | null; // null when the advice is correct
   rationale: string; // shown only with real-time explanations
   confidence: number; // 0..1, shown only with real-time explanations
@@ -149,7 +148,7 @@ export interface PanelOpen {
   t_ms: number;
 }
 
-/** One row per decision event. Field names match the analysis code and the Supabase table. */
+// Field names must match analysis/ and supabase/schema.sql.
 export interface DecisionRecord {
   participant_id: string;
   condition: ConditionId;
@@ -173,7 +172,7 @@ export interface DecisionRecord {
   detected: boolean; // ARIA wrong and the player rejected it
   false_alarm: boolean; // ARIA right and the player rejected it
   verified: boolean;
-  panels_viewed: string; // e.g. "comms|systems"
+  panels_viewed: string; // pipe-separated
   first_verify_ms: number | null;
   evidence_clicks: number;
   response_ms: number;

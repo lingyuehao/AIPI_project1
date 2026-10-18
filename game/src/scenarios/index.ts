@@ -5,11 +5,9 @@ import f2 from './flight2.json';
 import f3 from './flight3.json';
 import f4 from './flight4.json';
 
-// JSON imports are typed loosely by TypeScript; validateScenario() checks them at runtime.
 export const PRACTICE = practice as unknown as Scenario;
 export const FLIGHTS: Scenario[] = [f1, f2, f3, f4] as unknown as Scenario[];
 
-// During development, report scenario mistakes in the browser console.
 if (import.meta.env.DEV) {
   import('../engine/validate').then(({ validateScenario }) => {
     for (const s of [PRACTICE, ...FLIGHTS]) {

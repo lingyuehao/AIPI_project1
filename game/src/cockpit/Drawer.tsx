@@ -16,7 +16,6 @@ const TABS: { id: DrawerTab; label: string }[] = [
   { id: 'checklists', label: 'Checklists' },
 ];
 
-/** Cross-check pages. Opening them the first time during a decision costs time. */
 export function Drawer({ tab, s, comms, onTab, onClose }: Props) {
   return (
     <section className="drawer" aria-label="Cross-check pages">

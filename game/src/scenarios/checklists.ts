@@ -1,6 +1,4 @@
-// Simplified checklists for the game. These are NOT real operating procedures;
-// they are written for this study so that ARIA's invented steps (error type E5)
-// can be checked against a reference the player can open.
+// Not real operating procedures. Written so E5 errors can be checked in game.
 
 export interface Checklist {
   id: string;

@@ -1,5 +1,3 @@
-// Usage: npm run validate
-// Checks every scenario file for structural mistakes and prints a summary of ARIA's errors.
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';

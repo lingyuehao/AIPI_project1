@@ -36,10 +36,7 @@ interface Props {
 type Stage = 'gap' | 'decision';
 type Msg = CommsMessage & { isNew?: boolean };
 
-/**
- * Plays one scenario: a quiet gap, then a decision with a countdown, for each event.
- * No feedback on correctness is shown during the flight.
- */
+// No correctness feedback during the flight.
 export function Flight({ scenario, showExplanation, ctx, onDecision, onComplete }: Props) {
   const events = scenario.events;
   const [idx, setIdx] = useState(0);
@@ -142,7 +139,7 @@ export function Flight({ scenario, showExplanation, ctx, onDecision, onComplete 
     if (stage !== 'decision') return;
     if (verifiedAt === null) {
       setVerifiedAt(Date.now() - shownAt.current);
-      // The cost never leaves fewer than 3 seconds to decide.
+      // always leave at least 3 s
       setStageEnd((end) => Math.max(Date.now() + 3000, end - STUDY.verifyCostSeconds * 1000));
     }
     setPanels((p) => (p.includes(tab) ? p : [...p, tab]));

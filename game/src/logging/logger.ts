@@ -3,18 +3,16 @@ import { SUPABASE } from '../config';
 
 const STORAGE_PREFIX = 'second-seat-session-';
 
-/** Keeps a copy in the browser so a refresh does not lose data. */
 export function saveLocal(session: Session) {
   try {
     localStorage.setItem(STORAGE_PREFIX + session.participant_id, JSON.stringify(session));
   } catch {
-    // Storage can be unavailable (private mode); the in-memory session still works.
+    // private mode
   }
 }
 
 export const supabaseEnabled = () => Boolean(SUPABASE.url && SUPABASE.key);
 
-/** Inserts one row into a Supabase table through the REST API. Fails quietly when offline. */
 export async function pushRow(table: 'decisions' | 'sessions', row: object): Promise<boolean> {
   if (!supabaseEnabled()) return false;
   try {

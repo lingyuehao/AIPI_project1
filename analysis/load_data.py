@@ -34,7 +34,7 @@ def load_sessions(folder: str | Path, include_test: bool = False, include_incomp
     for c in BOOL_COLS:
         decisions[c] = decisions[c].astype(bool)
     decisions["error_type"] = decisions["error_type"].fillna("").replace("", "none")
-    decisions = decisions[decisions["flight"] >= 1]  # the practice flight is never logged, but be safe
+    decisions = decisions[decisions["flight"] >= 1]
 
     post = pd.DataFrame([p for s in sessions for p in s["post_flight"]])
     tlx = ["tlx_mental", "tlx_physical", "tlx_temporal", "tlx_performance", "tlx_effort", "tlx_frustration"]

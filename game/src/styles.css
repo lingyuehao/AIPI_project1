@@ -1,11 +1,3 @@
-/*
-  Two modes, matching the project's argument:
-  in flight  -> a glass cockpit: gray panel, black screens, aviation color code
-                (magenta route, cyan selected/ARIA, green normal, amber caution, red warning),
-                set in B612, the typeface Airbus designed for cockpit displays.
-  on the ground -> white report paper set in Source Serif 4, like an NTSB final report.
-*/
-
 :root {
   /* cockpit */
   --panel: #30353a;
@@ -204,7 +196,7 @@ button:disabled {
   font-size: 14px;
 }
 
-/* evidence highlight: ARIA points at what it looked at */
+/* evidence highlight */
 .hl rect,
 .hl circle,
 .hl text {
@@ -478,7 +470,7 @@ button:disabled {
   font-variant-numeric: tabular-nums;
 }
 
-/* drawer: cross-check pages replace the two displays */
+/* drawer */
 .drawer {
   grid-column: 1 / -1;
   background: var(--screen);

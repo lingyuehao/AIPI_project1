@@ -4,7 +4,6 @@ import { IncidentReportView } from './IncidentReportView';
 import { ERROR_TEMPLATES } from './reportTemplates';
 import type { ErrorType } from '../types';
 
-/** Standalone gallery of every ARIA error, opened with ?view=incidents. No game data involved. */
 export function IncidentFiles() {
   const all = FLIGHTS.flatMap((s) => s.events.filter((e) => e.aria.errorType).map((e) => ({ s, e })));
   const types = Object.keys(ERROR_TEMPLATES) as ErrorType[];

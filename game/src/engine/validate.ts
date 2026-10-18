@@ -1,6 +1,5 @@
 import type { Scenario } from '../types';
 
-/** Returns a list of problems in a scenario. An empty list means it is valid. */
 export function validateScenario(s: Scenario): string[] {
   const problems: string[] = [];
   const ids = new Set<string>();

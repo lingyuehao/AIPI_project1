@@ -3,7 +3,6 @@ import { CONDITIONS } from '../config';
 
 const params = () => new URLSearchParams(window.location.search);
 
-/** Participant id from ?pid=..., otherwise a random id. */
 export function makeParticipantId(): string {
   const pid = params().get('pid');
   if (pid) return pid.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 64);
@@ -11,11 +10,7 @@ export function makeParticipantId(): string {
   return `P-${rand}`;
 }
 
-/**
- * Condition from ?cond=A|B|C|D, otherwise random.
- * For balanced groups, hand out pre-generated links (analysis/make_participant_links.py)
- * instead of relying on random assignment.
- */
+// Use analysis/make_participant_links.py for balanced groups.
 export function assignCondition(): ConditionId {
   const q = (params().get('cond') || '').toUpperCase();
   if (q === 'A' || q === 'B' || q === 'C' || q === 'D') return q;
@@ -23,7 +18,6 @@ export function assignCondition(): ConditionId {
   return all[Math.floor(Math.random() * all.length)];
 }
 
-/** Report framing for the debrief groups (RQ4), from ?framing=systemic|individual or random. */
 export function assignFraming(condition: ConditionId): Framing | '' {
   if (!CONDITIONS[condition].debrief) return '';
   const q = params().get('framing');

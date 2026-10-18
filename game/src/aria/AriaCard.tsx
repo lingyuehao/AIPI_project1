@@ -16,7 +16,6 @@ interface Props {
   onEvidence: (ref: string | undefined) => void;
 }
 
-/** ARIA's advice, the explanation layers (condition-dependent) and the three player actions. */
 export function AriaCard(p: Props) {
   const { ev } = p;
   const frac = Math.max(0, Math.min(1, p.secondsLeft / STUDY.decisionSeconds));

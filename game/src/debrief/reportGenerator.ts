@@ -37,7 +37,6 @@ export function buildReport(
     ? `on the ${PANEL_LABEL[ev.cue.panel]}, visible without a cross-check`
     : `on the ${PANEL_LABEL[ev.cue.panel]}, one cross-check away`;
 
-  // Synopsis
   let result: string;
   if (!log) result = `If a crew accepts the advice: ${lowerFirst(ev.report.consequence)}`;
   else if (log.action === 'timeout') result = `Time ran out and ARIA's advice was applied by default. ${ev.report.consequence}`;
@@ -46,7 +45,6 @@ export function buildReport(
   else result = `The crew rejected the advice but chose "${optionLabel(log.chosen_option)}" instead of the correct action, "${optionLabel(ev.correctOption)}".`;
   const synopsis = `At ${ev.clock}, during ${PHASE_LABEL[ev.phase]}, ARIA advised: "${ev.aria.text}" ${ev.report.whatHappened} ${result}`;
 
-  // History of the flight
   const history: IncidentReport['history'] = [
     { t: 'T+0.0 s', text: `Situation presented: ${ev.situation}` },
     { t: 'T+0.0 s', text: `ARIA advised: "${ev.aria.text}"${ev.aria.broadcast ? ` Proposed radio call: "${ev.aria.broadcast}"` : ''}` },
@@ -65,7 +63,7 @@ export function buildReport(
     history.push({ t: `T+${secs(log.response_ms)}`, text: decision });
   }
 
-  // Interaction layer, written from the player's log
+  // Interaction layer comes from the player's own log
   let interaction: string;
   if (!log) {
     interaction = `The information that contradicted ARIA was ${cuePlace}. Whether a crew catches this error depends on whether they look there before deciding.`;
@@ -86,7 +84,7 @@ export function buildReport(
     organization: { heading: 'Organization and deployment', text: t.organization },
   };
 
-  // Framing manipulation (RQ4): same facts, different emphasis and order.
+  // RQ4 framing: same facts, different order
   const individual = framing === 'individual' && log !== null && !log.detected;
   const analysis = individual
     ? [layers.interaction, layers.model, layers.interface, layers.organization]

@@ -10,7 +10,6 @@ const AX = 180; // aircraft position
 const AY = 272;
 const R = 230; // pixels for the full range
 
-/** Track-up navigation display with route (magenta), ARIA's proposal (dashed cyan) and weather radar. */
 export function NavDisplay({ nav, heading, hl }: Props) {
   const k = R / nav.rangeNm;
   const px = (x: number) => AX + x * k;
@@ -50,22 +49,18 @@ export function NavDisplay({ nav, heading, hl }: Props) {
           </g>
         ))}
       </g>
-      {/* Range arcs */}
       <path d={`M${AX - R} ${AY} A${R} ${R} 0 0 1 ${AX + R} ${AY}`} stroke="var(--ink)" strokeWidth="1" fill="none" />
       <path d={`M${AX - R / 2} ${AY} A${R / 2} ${R / 2} 0 0 1 ${AX + R / 2} ${AY}`} stroke="var(--dim)" strokeWidth="1" strokeDasharray="3 5" fill="none" />
-      {/* range labels sit on the arcs at 45° left of the nose */}
       <text x={AX - (R / 2) * 0.707 - 6} y={AY - (R / 2) * 0.707} textAnchor="end" className="nd-label nd-cyan">
         {nav.rangeNm / 2}
       </text>
       <text x={AX - R * 0.707 + 4} y={AY - R * 0.707 - 6} className="nd-label nd-cyan">
         {nav.rangeNm}
       </text>
-      {/* Track */}
       <text x={AX} y="22" textAnchor="middle" className="nd-head">
         TRK {String(Math.round(heading) % 360).padStart(3, '0')}
       </text>
       <line x1={AX} x2={AX} y1="30" y2="40" stroke="var(--ink)" strokeWidth="2" />
-      {/* Aircraft */}
       <path d={`M${AX} ${AY - 14} L${AX - 9} ${AY + 8} L${AX} ${AY + 3} L${AX + 9} ${AY + 8} Z`} fill="none" stroke="var(--symbol)" strokeWidth="2.5" />
       {proposed && (
         <text x="350" y="292" textAnchor="end" className="nd-label nd-cyan">

@@ -6,7 +6,6 @@ interface Props {
   newCount: number;
 }
 
-/** Engine and alert summary plus the latest ATC transmission. Always visible. */
 export function AlertStrip({ s, latestAtc, newCount }: Props) {
   return (
     <div className="strip">

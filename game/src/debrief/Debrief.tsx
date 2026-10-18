@@ -10,7 +10,6 @@ interface Props {
   onDone: (viewMs: number, reports: number) => void;
 }
 
-/** Post-flight debrief: one report for every ARIA error in the flight just flown. */
 export function Debrief({ scenario, decisions, framing, onDone }: Props) {
   const opened = useRef(Date.now());
   const reports = useMemo(

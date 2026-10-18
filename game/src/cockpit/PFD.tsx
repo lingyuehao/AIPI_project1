@@ -8,7 +8,6 @@ interface Props {
 const CX = 180;
 const CY = 140;
 
-/** Simplified primary flight display: attitude, speed tape, altitude tape, heading. */
 export function PFD({ s, hl }: Props) {
   const horizonY = CY + s.pitch * 5;
   const speedTicks = range(Math.floor((s.ias - 40) / 10) * 10, s.ias + 40, 10).filter((v) => v >= 0);
@@ -30,7 +29,6 @@ export function PFD({ s, hl }: Props) {
         </clipPath>
       </defs>
 
-      {/* Attitude indicator */}
       <g clipPath="url(#pfd-att)" data-ref="pfd.att">
         <rect x="80" y={horizonY - 400} width="200" height="400" fill="var(--sky)" />
         <rect x="80" y={horizonY} width="200" height="400" fill="var(--ground)" />
@@ -46,14 +44,12 @@ export function PFD({ s, hl }: Props) {
           </g>
         ))}
       </g>
-      {/* Aircraft symbol */}
       <g stroke="var(--symbol)" strokeWidth="4" fill="none">
         <path d={`M${CX - 46} ${CY} h28 l8 8`} />
         <path d={`M${CX + 46} ${CY} h-28 l-8 8`} />
         <rect x={CX - 3} y={CY - 3} width="6" height="6" fill="var(--symbol)" stroke="none" />
       </g>
 
-      {/* Speed tape */}
       <rect x="22" y="50" width="66" height="180" fill="var(--tape)" />
       <g clipPath="url(#pfd-spd)">
         {speedTicks.map((v) => {
@@ -82,7 +78,6 @@ export function PFD({ s, hl }: Props) {
         </text>
       )}
 
-      {/* Altitude tape */}
       <rect x="272" y="50" width="70" height="180" fill="var(--tape)" />
       <g clipPath="url(#pfd-alt)">
         {altTicks.map((a) => {
@@ -110,14 +105,12 @@ export function PFD({ s, hl }: Props) {
         {Math.round(s.vs)} fpm
       </text>
 
-      {/* Ground speed */}
       <g className={cls('pfd.gs')} data-ref="pfd.gs">
         <text x="22" y="30" className="pfd-med">
           GS <tspan className="pfd-green">{Math.round(s.gs)}</tspan>
         </text>
       </g>
 
-      {/* Radio altimeter */}
       {s.radioAlt !== null && s.radioAlt !== undefined && s.radioAlt <= 2500 && (
         <g className={cls('pfd.ra')} data-ref="pfd.ra">
           <text x={CX} y="222" textAnchor="middle" className="pfd-med" fill={raNegative ? 'var(--amber)' : 'var(--ink)'}>
@@ -126,7 +119,6 @@ export function PFD({ s, hl }: Props) {
         </g>
       )}
 
-      {/* Heading */}
       <g data-ref="pfd.hdg">
         <rect x={CX - 40} y="262" width="80" height="26" fill="var(--screen)" stroke="var(--ink)" />
         <text x={CX} y="281" textAnchor="middle" className="pfd-med">

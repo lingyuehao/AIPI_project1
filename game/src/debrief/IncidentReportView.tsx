@@ -1,6 +1,5 @@
 import type { IncidentReport } from './reportGenerator';
 
-/** Renders one report in the style of an NTSB final report. */
 export function IncidentReportView({ r }: { r: IncidentReport }) {
   return (
     <article className="report">

@@ -1,11 +1,6 @@
 import type { ErrorType } from '../types';
 
-/**
- * One template per ARIA error type. The four analysis layers adapt HFACS
- * (Shappell & Wiegmann, 2000) to an AI-assisted cockpit:
- *   model -> human-AI interaction -> interface -> organization and deployment.
- * Event-specific facts are filled in by reportGenerator.ts.
- */
+// Layers adapted from HFACS (Shappell & Wiegmann, 2000).
 export interface ErrorTemplate {
   label: string;
   mlAnalogue: string;

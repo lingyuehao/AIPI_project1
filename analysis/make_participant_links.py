@@ -1,7 +1,7 @@
 """Balanced, randomized participant links (block randomization).
 
 Usage:
-    python make_participant_links.py https://<you>.github.io/second-seat/ 48 > links.csv
+    python make_participant_links.py https://lingyuehao.github.io/AIPI_project1/ 48 > links.csv
 
 Every block of 8 links contains each condition twice; within the debrief conditions (C, D)
 the report framing alternates, so groups stay balanced however many people finish.
