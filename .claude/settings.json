@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node shots2.mjs /private/tmp/claude-501/-Users-haolingyue-Desktop-AIPI-project1/0050df7d-8cd9-4b48-9d90-4586a5f38c55/scratchpad/shots)"
+    ]
+  }
+}

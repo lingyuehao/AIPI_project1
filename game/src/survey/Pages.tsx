@@ -4,6 +4,7 @@ import { STUDY } from '../config';
 import { Choice, Likert, Slider } from './controls';
 import { FLIGHTS } from '../scenarios';
 import { ERROR_TEMPLATES } from '../debrief/reportTemplates';
+import { supabaseEnabled } from '../logging/logger';
 
 const Paper = ({ children }: { children: React.ReactNode }) => (
   <main className="paper">
@@ -29,7 +30,10 @@ export function Consent({ onAgree }: { onAgree: () => void }) {
       <h2>Your data</h2>
       <p>
         We do not collect your name or email. Your data is stored under a random code and used only for this course project. You can stop at any
-        time by closing the page; nothing is kept from an unfinished session unless you download it.
+        time by closing the page.{' '}
+        {supabaseEnabled()
+          ? 'Decisions are sent to the study database as you play, so answers given before you stop are kept.'
+          : 'Nothing is sent anywhere unless you download your data file at the end and send it in. A copy stays in your own browser storage.'}
       </p>
       <h2>Questions</h2>
       <p>Contact the researcher through the AIPI 590 course staff at Duke University, or through the person who sent you this link.</p>

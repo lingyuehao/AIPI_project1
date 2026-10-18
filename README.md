@@ -12,7 +12,13 @@ AIPI 590 (Emerging Trends in Explainable AI), Duke University, Fall 2026.
 - Quick tour with short waits between decisions: https://lingyuehao.github.io/AIPI_project1/?fast=1
 - AI Incident Files, all twelve reports without playing: https://lingyuehao.github.io/AIPI_project1/?view=incidents
 
-A full session takes 30 to 40 minutes. The quick tour skips the waits between decisions, which saves about 7 minutes.
+A full session takes up to 45 minutes. The quick tour skips the waits between decisions, which saves about 7 minutes.
+
+![Cockpit during flight 2 with the real-time explanation shown. ARIA recommends a shortcut that crosses thunderstorm cell C3.](docs/screenshots/cockpit.png)
+*Flight 2, explanation condition. ARIA recommends a shortcut at 91% confidence. The dashed route on the navigation display runs through cell C3.*
+
+![Debrief report after flight 2](docs/screenshots/debrief.png)
+*The incident report the player reads after the same flight, built from their own decision log.*
 
 ## What this project contributes
 
@@ -23,7 +29,12 @@ A full session takes 30 to 40 minutes. The quick tour skips the waits between de
 
 ## Research question and design
 
-**Question.** Do incident reports after a flight help people catch AI errors later, compared with explanations during the flight?
+**Research questions.**
+
+- **RQ1.** Do incident reports after a flight help people catch AI errors later, compared with explanations during the flight?
+- **RQ2.** Do people become complacent after a run of correct advice? Flight 1 has eight correct recommendations before ARIA's first error.
+- **RQ3.** Which error types are hardest to catch, and do the two new types in flight 4 get caught as often as the familiar ones?
+- **RQ4** (exploratory). Does the framing of an incident report change who people hold responsible?
 
 **Conditions** (between subjects), real-time explanation × post-flight debrief:
 
@@ -38,7 +49,7 @@ A full session takes 30 to 40 minutes. The quick tour skips the waits between de
 
 **Measures.** Sensitivity (d′) and criterion (c) from signal detection theory, with "ARIA is wrong" as the signal; detection rate by error type; cross-check rate; response time; trust after each flight; raw NASA-TLX; the Jian et al. (2000) trust scale; and responsibility attribution.
 
-**Secondary question (RQ4).** Half of the debrief participants read reports that lead with the crew's action (individual framing), the other half reports that lead with system causes (systemic framing). The facts are the same. This tests whether framing shifts who people blame.
+**Report framing (RQ4).** Half of the debrief participants read reports that lead with the crew's action (individual framing), the other half reports that lead with system causes (systemic framing). The facts are the same. This tests whether framing shifts who people blame.
 
 ## Evidence so far
 
