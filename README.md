@@ -46,7 +46,7 @@ No human participants have been run yet. The evidence for this submission is the
 
 - **Design rationale and case analysis.** Each of the twelve errors is grounded in an ML failure mode and a real incident, and each leaves a cue the player could find (the "Where the truth was" column below). The twelve incident reports are the case analyses.
 - **Scenario validation.** `npm run validate` checks every flight for structure, fails if a wrong recommendation has no error type, cue or report text, and prints ARIA's reliability per flight (75% in all four). It runs on every deploy.
-- **Pipeline validation.** `simulate_data.py` writes 48 fake participants in the exact export format, and every cell of `analysis.ipynb` runs on them. The simulated effects are assumptions written into the simulator. They are not findings and should not be reported as results.
+- **Pipeline validation.** `simulate_data.py` writes simulated participants (none of them real people) in the exact export format, and every cell of `analysis.ipynb` runs on them. The simulated effects are assumptions written into the simulator. They are not findings and should not be reported as results.
 - **Design iteration.** Choices made to protect the measurement: ARIA is right for the first eight events of flight 1 so the first failure is a clean measure of complacency; correct advice is sometimes cautious and sometimes bold, so "always reject the risky option" does not work; flight 4 removes all aids and adds new error types so it measures transfer.
 
 ## ARIA's errors
@@ -142,7 +142,7 @@ The notebook reads `data/simulated` by default. For real data, put participant f
 ### Running the study
 
 1. Optional automatic data collection: create a Supabase project, run `supabase/schema.sql`, and add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as repository secrets (or in `game/.env`, see `.env.example`). Without Supabase, participants download a JSON file at the end and send it in.
-2. Generate balanced links: `python analysis/make_participant_links.py https://lingyuehao.github.io/AIPI_project1/ 48 > links.csv`. Each block of eight links covers every condition twice and alternates report framing.
+2. Generate balanced links, for example 48 of them: `python analysis/make_participant_links.py https://lingyuehao.github.io/AIPI_project1/ 48 > links.csv`. Each block of eight links covers every condition twice and alternates report framing.
 3. Pilot with three to five people and check timing and difficulty before recruiting.
 4. Get IRB review or an exemption before collecting data from people outside the course.
 
@@ -152,7 +152,7 @@ The notebook reads `data/simulated` by default. For real data, put participant f
 - **Non-pilot participants.** Most players will not be pilots. Results would describe people working with an AI advisor on a high-stakes task, not airline crews.
 - **Low stakes.** A game has none of the risk or stress of a real cockpit.
 - **Scripted AI.** ARIA is a Wizard-of-Oz design. Its errors are cleaner and easier to trace than a real model's, which probably makes them easier to catch.
-- **Statistical power.** With around 48 participants, only large between-group differences would be detectable. The event-level models use all of the roughly 2,300 decisions, and results should be reported with effect sizes and confidence intervals.
+- **Statistical power.** The sample size has not been set by a power analysis. A course-sized sample (a few dozen people) could only detect large between-group differences. The event-level models use every decision (48 per participant), and results should be reported with effect sizes and confidence intervals.
 - **Simplified domain.** Scenarios, procedures and the volcano are simplified or invented. The checklists in the game are not real operating procedures.
 - **Explanation quality is fixed.** The real-time explanations are written to be accurate and helpful. Poor or misleading explanations, common in deployed systems, are not tested.
 
@@ -165,7 +165,7 @@ The notebook reads `data/simulated` by default. For real data, put participant f
 
 ## Future work
 
-- Run the human study (about 48 participants, balanced links) and report d′ by condition on flight 4.
+- Run a power analysis, then the human study with balanced links, and report d′ by condition on flight 4.
 - Add a condition where real-time explanations are sometimes wrong, to test whether debriefs protect against misleading explanations.
 - Swap the scripted ARIA for a live language model, so its errors are not hand-authored.
 - Move the scenario format to another domain, such as clinical decision support, where post-incident review already exists.

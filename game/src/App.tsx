@@ -42,8 +42,12 @@ export default function App() {
   const [uploaded, setUploaded] = useState<boolean | null>(null);
   const cond = CONDITIONS[session.condition];
 
-  useEffect(() => saveLocal(session), [session]);
-  useEffect(() => window.scrollTo(0, 0), [step]);
+  useEffect(() => {
+    saveLocal(session);
+  }, [session]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [step]);
 
   const ctx: FlightContext = useMemo(
     () => ({
